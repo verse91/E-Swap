@@ -1,5 +1,6 @@
 'use client'
 import HeroSection from '@/components/ui/homepage/herosection'
+import Testimonials from '@/components/ui/homepage/testimonials-data'
 import { NavbarMain } from '@/components/ui/navbar/navbar';
 const HomePage = () => {
     return (
@@ -7,6 +8,8 @@ const HomePage = () => {
             <NavbarMain />
 
             <HeroSection />
+
+            <Testimonials />
         </div>
     )
 }

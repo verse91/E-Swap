@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { InfiniteSlider } from '@/components/ui/homepage/infinite-slider';
 import { ProgressiveBlur } from '@/components/ui/homepage/progressive-blur';
-import Testimonials from '@/components/ui/homepage/testimonials-data';
 const HeroSection = () => {
     const [isLoaded, setIsLoaded] = useState(false);
 
@@ -124,7 +123,7 @@ const HeroSection = () => {
                                         </p>
                                         <Link
                                             href="#"
-                                            className={`inline-flex items-center px-6 py-5 text-base font-semibold text-black transition-all duration-300 bg-green-300 mt-9 hover:bg-green-400 focus:bg-green-400 hover:scale-105 hover:shadow-xl hover:shadow-green-300/50 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                                            className={`inline-flex items-center rounded-xl px-6 py-5 text-base font-semibold text-black transition-all duration-300 bg-green-300 mt-9 hover:bg-green-400 focus:bg-green-400 hover:scale-105 hover:shadow-xl hover:shadow-green-300/50 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                                             style={{ transitionDelay: '300ms' }}
                                         >
                                             Xem demo vận hành
@@ -304,7 +303,6 @@ const HeroSection = () => {
                     </div>
                 </div>
             </div>
-            <Testimonials />
         </>
     );
 };
