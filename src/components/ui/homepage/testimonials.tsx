@@ -27,12 +27,13 @@ export const TestimonialsColumn = ({
                     translateY: "-50%",
                 }}
                 transition={{
-                    duration,
+                    duration: duration * 1.5,
                     repeat: Infinity,
                     ease: "linear",
                     repeatType: "loop",
                 }}
                 className="flex flex-col gap-6 pb-6 bg-background"
+                style={{ willChange: 'transform' }}
             >
                 {[...new Array(2)].map((_, index) => (
                     <React.Fragment key={index}>

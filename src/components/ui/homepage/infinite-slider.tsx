@@ -29,8 +29,20 @@ export function InfiniteSlider({
     const translation = useMotionValue(0);
     const [isTransitioning, setIsTransitioning] = useState(false);
     const [key, setKey] = useState(0);
+    const [isVisible, setIsVisible] = useState(false);
+
+    // Startup animation effect
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsVisible(true);
+        }, 200); // Faster delay to match other animations
+
+        return () => clearTimeout(timer);
+    }, []);
 
     useEffect(() => {
+        if (!isVisible) return; // Don't start animation until visible
+
         let controls;
         const size = direction === 'horizontal' ? width : height;
         const contentSize = size + gap;
@@ -71,6 +83,7 @@ export function InfiniteSlider({
         isTransitioning,
         direction,
         reverse,
+        isVisible,
     ]);
 
     const hoverProps = durationOnHover
@@ -99,6 +112,16 @@ export function InfiniteSlider({
                 }}
                 ref={ref}
                 {...hoverProps}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ 
+                    opacity: isVisible ? 1 : 0, 
+                    y: isVisible ? 0 : 20 
+                }}
+                transition={{ 
+                    duration: 0.5, 
+                    ease: "easeOut",
+                    delay: isVisible ? 0.1 : 0 
+                }}
             >
                 {children}
                 {children}

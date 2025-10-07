@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { InfiniteSlider } from '@/components/ui/homepage/infinite-slider';
 import { ProgressiveBlur } from '@/components/ui/homepage/progressive-blur';
 import Testimonials from '@/components/ui/homepage/testimonials-data';
@@ -21,16 +22,22 @@ const HeroSection = () => {
                         transform: translateY(0px);
                     }
                     50% {
-                        transform: translateY(-20px);
+                        transform: translateY(-15px);
                     }
+                }
+                /* GPU optimization */
+                .gpu-optimized {
+                    will-change: transform;
+                    transform: translateZ(0);
+                    backface-visibility: hidden;
                 }
             `}</style>
             <div className="relative bg-gradient-to-b from-green-50 to-green-100 overflow-hidden min-h-screen">
-                {/* Animated background elements */}
+                {/* Animated background elements - Optimized for performance */}
                 <div className="absolute inset-0">
-                    <div className="absolute top-20 left-10 w-72 h-72 bg-green-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
-                    <div className="absolute top-40 right-10 w-72 h-72 bg-green-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse" style={{ animationDelay: '2s' }}></div>
-                    <div className="absolute -bottom-8 left-20 w-72 h-72 bg-green-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse" style={{ animationDelay: '4s' }}></div>
+                    <div className="absolute top-20 left-10 w-64 h-64 bg-green-200 rounded-full mix-blend-multiply filter blur-lg opacity-50 animate-pulse" style={{animationDuration: '4s'}}></div>
+                    <div className="absolute top-40 right-10 w-64 h-64 bg-green-300 rounded-full mix-blend-multiply filter blur-lg opacity-50 animate-pulse" style={{ animationDelay: '2s', animationDuration: '4s' }}></div>
+                    <div className="absolute -bottom-8 left-20 w-64 h-64 bg-green-400 rounded-full mix-blend-multiply filter blur-lg opacity-50 animate-pulse" style={{ animationDelay: '4s', animationDuration: '4s' }}></div>
                 </div>
                 {/* <header className={`absolute inset-x-0 top-0 z-10 w-full transition-all duration-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}> */}
                 {/*     <div className="px-4 mx-auto sm:px-6 lg:px-8"> */}
@@ -168,14 +175,15 @@ const HeroSection = () => {
                                         width={600}
                                         height={900}
                                         priority
-                                        style={{
-                                            animation: 'float 4s ease-in-out infinite',
-                                            animationDelay: '0.5s'
-                                        }}
+                                    style={{
+                                        animation: 'float 6s ease-in-out infinite',
+                                        animationDelay: '0.5s',
+                                        willChange: 'transform'
+                                    }}
                                     />
-                                    <div className="absolute top-20 -left-4 w-8 h-8 bg-green-300 rounded-full opacity-60 animate-pulse" style={{ animationDelay: '2s' }}></div>
-                                    <div className="absolute top-40 -right-6 w-6 h-6 bg-green-400 rounded-full opacity-60 animate-pulse" style={{ animationDelay: '3s' }}></div>
-                                    <div className="absolute bottom-32 -left-2 w-4 h-4 bg-green-500 rounded-full opacity-60 animate-pulse" style={{ animationDelay: '4s' }}></div>
+                                    <div className="absolute top-20 -left-4 w-6 h-6 bg-green-300 rounded-full opacity-40 animate-pulse" style={{ animationDelay: '2s', animationDuration: '3s' }}></div>
+                                    <div className="absolute top-40 -right-6 w-4 h-4 bg-green-400 rounded-full opacity-40 animate-pulse" style={{ animationDelay: '3s', animationDuration: '3s' }}></div>
+                                    <div className="absolute bottom-32 -left-2 w-3 h-3 bg-green-500 rounded-full opacity-40 animate-pulse" style={{ animationDelay: '4s', animationDuration: '3s' }}></div>
                                 </div>
                             </div>
                         </div>
@@ -186,14 +194,19 @@ const HeroSection = () => {
                     <div className="group relative m-auto max-w-6xl px-6">
 
                         <div className="flex flex-col items-center md:flex-row">
-                            <div className="md:max-w-44 md:border-r md:pr-6">
+                            <motion.div 
+                                className="md:max-w-44 md:pr-6"
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+                            >
                                 <p className="text-end text-sm text-black">Lựa chọn hàng đầu của hàng loạt doanh nghiệp</p>
-                            </div>
+                            </motion.div>
                             <div className="relative py-6 md:w-[calc(100%-11rem)]">
                                 <InfiniteSlider
-                                    durationOnHover={20}
-                                    duration={40}
-                                    gap={112}>
+                                    durationOnHover={30}
+                                    duration={60}
+                                    gap={80}>
                                     <div className="flex">
                                         <img
                                             className="mx-auto h-10 w-fit dark:invert"
@@ -252,18 +265,40 @@ const HeroSection = () => {
 
                                 </InfiniteSlider>
 
-                                <div className="bg-linear-to-r from-green-100 absolute inset-y-0 left-0 w-20"></div>
-                                <div className="bg-linear-to-l from-green-100 absolute inset-y-0 right-0 w-20"></div>
-                                <ProgressiveBlur
-                                    className="pointer-events-none absolute left-0 top-0 h-full w-20"
-                                    direction="left"
-                                    blurIntensity={1}
-                                />
-                                <ProgressiveBlur
-                                    className="pointer-events-none absolute right-0 top-0 h-full w-20"
-                                    direction="right"
-                                    blurIntensity={1}
-                                />
+                                <motion.div 
+                                    className="bg-linear-to-r from-green-100 absolute inset-y-0 left-0 w-20"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 0.8, delay: 0.5 }}
+                                ></motion.div>
+                                <motion.div 
+                                    className="bg-linear-to-l from-green-100 absolute inset-y-0 right-0 w-20"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 0.8, delay: 0.5 }}
+                                ></motion.div>
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 0.8, delay: 0.6 }}
+                                >
+                                    <ProgressiveBlur
+                                        className="pointer-events-none absolute left-0 top-0 h-full w-20"
+                                        direction="left"
+                                        blurIntensity={1}
+                                    />
+                                </motion.div>
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 0.8, delay: 0.6 }}
+                                >
+                                    <ProgressiveBlur
+                                        className="pointer-events-none absolute right-0 top-0 h-full w-20"
+                                        direction="right"
+                                        blurIntensity={1}
+                                    />
+                                </motion.div>
                             </div>
                         </div>
                     </div>
