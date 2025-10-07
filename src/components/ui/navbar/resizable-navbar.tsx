@@ -27,9 +27,11 @@ interface NavItemsProps {
     items: {
         name: string;
         link: string;
+        isDrawer?: boolean;
     }[];
     className?: string;
     onItemClick?: () => void;
+    onPricingClick?: () => void;
 }
 
 interface MobileNavProps {
@@ -124,7 +126,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
     );
 };
 
-export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
+export const NavItems = ({ items, className, onItemClick, onPricingClick }: NavItemsProps) => {
     const [hovered, setHovered] = useState<number | null>(null);
 
     return (
@@ -136,27 +138,50 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
             )}
         >
             {items.map((item, idx) => (
-                <a
-                    onMouseEnter={() => setHovered(idx)}
-                    onClick={onItemClick}
-                    className="relative px-4 py-2 text-neutral-600 dark:text-neutral-300"
-                    key={`link-${idx}`}
-                    href={item.link}
-                >
-                    {hovered === idx && (
-                        <motion.div
-                            layoutId="hovered"
-                            className="absolute inset-x-4 bottom-0 h-0.5 bg-gray-800 dark:bg-neutral-200 rounded-full"
-                            transition={{
-                                type: "spring",
-                                stiffness: 300,
-                                damping: 30,
-                                mass: 0.6,
-                            }}
-                        />
-                    )}
-                    <span className="relative z-20">{item.name}</span>
-                </a>
+                item.isDrawer ? (
+                    <button
+                        onMouseEnter={() => setHovered(idx)}
+                        onClick={onPricingClick}
+                        className="relative px-4 py-2 text-neutral-600 dark:text-neutral-300 cursor-pointer"
+                        key={`link-${idx}`}
+                    >
+                        {hovered === idx && (
+                            <motion.div
+                                layoutId="hovered"
+                                className="absolute inset-x-4 bottom-0 h-0.5 bg-gray-800 dark:bg-neutral-200 rounded-full"
+                                transition={{
+                                    type: "spring",
+                                    stiffness: 300,
+                                    damping: 30,
+                                    mass: 0.6,
+                                }}
+                            />
+                        )}
+                        <span className="relative z-20">{item.name}</span>
+                    </button>
+                ) : (
+                    <a
+                        onMouseEnter={() => setHovered(idx)}
+                        onClick={onItemClick}
+                        className="relative px-4 py-2 text-neutral-600 dark:text-neutral-300"
+                        key={`link-${idx}`}
+                        href={item.link}
+                    >
+                        {hovered === idx && (
+                            <motion.div
+                                layoutId="hovered"
+                                className="absolute inset-x-4 bottom-0 h-0.5 bg-gray-800 dark:bg-neutral-200 rounded-full"
+                                transition={{
+                                    type: "spring",
+                                    stiffness: 300,
+                                    damping: 30,
+                                    mass: 0.6,
+                                }}
+                            />
+                        )}
+                        <span className="relative z-20">{item.name}</span>
+                    </a>
+                )
             ))}
         </motion.div>
     );

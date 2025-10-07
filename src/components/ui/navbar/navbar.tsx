@@ -20,7 +20,7 @@ import {
     MobileNavToggle,
     MobileNavMenu,
 } from "@/components/ui/navbar/resizable-navbar";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import SmoothDrawer from "@/components/ui/subcription/smooth-drawer";
@@ -46,6 +46,7 @@ export function NavbarMain() {
         {
             name: "Pricing",
             link: "/pricing",
+            isDrawer: true, // Special flag for pricing
         },
         {
             name: "Contact",
@@ -54,6 +55,7 @@ export function NavbarMain() {
     ];
 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const pricingDrawerRef = useRef<HTMLButtonElement>(null);
 
     return (
         <div className="relative w-full">
@@ -61,7 +63,11 @@ export function NavbarMain() {
                 {/* Desktop Navigation */}
                 <NavBody>
                     <NavbarLogo />
-                    <NavItems className="text-white" items={navItems} />
+                    <NavItems
+                        className="text-white"
+                        items={navItems}
+                        onPricingClick={() => pricingDrawerRef.current?.click()}
+                    />
                     <div className="flex items-center gap-4">
                         {/* <NavbarButton */}
                         {/*     target="_blank" */}
@@ -161,14 +167,27 @@ export function NavbarMain() {
                         onClose={() => setIsMobileMenuOpen(false)}
                     >
                         {navItems.map((item, idx) => (
-                            <a
-                                key={`mobile-link-${idx}`}
-                                href={item.link}
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                className="relative text-neutral-600 dark:text-neutral-300"
-                            >
-                                <span className="block">{item.name}</span>
-                            </a>
+                            item.isDrawer ? (
+                                <button
+                                    key={`mobile-link-${idx}`}
+                                    onClick={() => {
+                                        pricingDrawerRef.current?.click();
+                                        setIsMobileMenuOpen(false);
+                                    }}
+                                    className="relative text-neutral-600 dark:text-neutral-300 text-left"
+                                >
+                                    <span className="block">{item.name}</span>
+                                </button>
+                            ) : (
+                                <a
+                                    key={`mobile-link-${idx}`}
+                                    href={item.link}
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="relative text-neutral-600 dark:text-neutral-300"
+                                >
+                                    <span className="block">{item.name}</span>
+                                </a>
+                            )
                         ))}
                         <div className="flex w-full flex-col gap-4">
                             {loading ? (
@@ -232,22 +251,42 @@ export function NavbarMain() {
                                     }
                                 />
                             )}
-                            <NavbarButton
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                title="Star it on GitHub ⭐"
-                                href="https://github.com/verse91/clippy-ytb"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                variant="primary"
-                                className="w-full flex items-center gap-2 justify-center"
-                            >
-                                <i className="bxl bx-github text-2xl text-black transition-all group-hover:text-gray-300 group-hover:scale-110"></i>
-                                Star it on GitHub
-                            </NavbarButton>
+                            {/* <NavbarButton */}
+                            {/*     target="_blank" */}
+                            {/*     rel="noopener noreferrer" */}
+                            {/*     title="Star it on GitHub ⭐" */}
+                            {/*     href="https://github.com/verse91/clippy-ytb" */}
+                            {/*     onClick={() => setIsMobileMenuOpen(false)} */}
+                            {/*     variant="primary" */}
+                            {/*     className="w-full flex items-center gap-2 justify-center" */}
+                            {/* > */}
+                            {/*     <i className="bxl bx-github text-2xl text-black transition-all group-hover:text-gray-300 group-hover:scale-110"></i> */}
+                            {/*     Star it on GitHub */}
+                            {/* </NavbarButton> */}
                         </div>
                     </MobileNavMenu>
                 </MobileNav>
             </Navbar>
+
+            {/* Pricing Drawer */}
+            <SmoothDrawer
+                title="Bảng giá dịch vụ"
+                description=""
+                primaryButtonText="Mua"
+                secondaryButtonText="Chi tiết"
+                onSecondaryAction={() => { }}
+                isUserLoggedIn={!!user}
+                userCredits={userCredits || 0}
+                trigger={
+                    <button
+                        ref={pricingDrawerRef}
+                        style={{ display: 'none' }}
+                        aria-hidden="true"
+                    >
+                        Hidden Trigger
+                    </button>
+                }
+            />
         </div>
     );
 }

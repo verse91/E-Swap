@@ -109,16 +109,17 @@ const HeroSection = () => {
                                 <div className="flex flex-col justify-between flex-1 h-full">
                                     <div>
                                         <h1 className={`text-4xl font-bold text-black sm:text-6xl xl:text-7xl transition-all duration-600 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '100ms' }}>
-                                            Take control of your commute's future
+                                            E-Swap: Giải pháp năng lượng xanh 2-trong-1
                                         </h1>
                                         <p className={`mt-6 text-base text-black sm:text-xl transition-all duration-600 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '200ms' }}>
-                                            The first zero-emission swapping infrastructure, powered by 100% solar energy. Get a full battery in under 2 minutes.                                        </p>
+                                            Hạ tầng đổi pin không phát thải đầu tiên, vận hành 100% bằng năng lượng mặt trời. Đổi pin đầy chỉ trong dưới 2 phút.
+                                        </p>
                                         <Link
                                             href="#"
                                             className={`inline-flex items-center px-6 py-5 text-base font-semibold text-black transition-all duration-300 bg-green-300 mt-9 hover:bg-green-400 focus:bg-green-400 hover:scale-105 hover:shadow-xl hover:shadow-green-300/50 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                                             style={{ transitionDelay: '300ms' }}
                                         >
-                                            Get started for free
+                                            Xem demo vận hành
                                             <svg className="w-5 h-5 ml-2 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                                             </svg>
