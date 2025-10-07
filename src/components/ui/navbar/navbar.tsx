@@ -1,5 +1,4 @@
 "use client";
-import SignInModal from "@/components/login-form";
 import { useAuth } from "@/lib/auth-context";
 import {
     DropdownMenu,
@@ -25,6 +24,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import SmoothDrawer from "@/components/ui/subcription/smooth-drawer";
 import { useUserCredits } from "@/lib/useUserCredits";
+import Link from "next/link";
 
 export function NavbarMain() {
     const { user, signOut, loading } = useAuth();
@@ -145,9 +145,9 @@ export function NavbarMain() {
                                 </DropdownMenu>
                             </div>
                         ) : (
-                            <SignInModal
-                                trigger={<NavbarButton variant="primary">Đăng nhập</NavbarButton>}
-                            />
+                            <Link href="/sign-in">
+                                <NavbarButton variant="primary">Sign in</NavbarButton>
+                            </Link>
                         )}
                     </div>
                 </NavBody>
@@ -243,13 +243,11 @@ export function NavbarMain() {
                                     </div>
                                 </div>
                             ) : (
-                                <SignInModal
-                                    trigger={
-                                        <NavbarButton variant="primary" className="w-full">
-                                            Sign in
-                                        </NavbarButton>
-                                    }
-                                />
+                                <Link href="/sign-in">
+                                    <NavbarButton variant="primary" className="w-full">
+                                        Sign in
+                                    </NavbarButton>
+                                </Link>
                             )}
                             {/* <NavbarButton */}
                             {/*     target="_blank" */}

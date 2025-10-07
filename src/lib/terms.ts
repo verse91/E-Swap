@@ -1,37 +1,37 @@
 export const TERMS_TEXT = [
   {
-    title: "1. YouTube Content & Copyright",
+    title: "1. Bảo mật & Quyền riêng tư",
     content:
-      "By using this service to process or download video content:\n\n- You acknowledge that using content without proper rights may violate copyright laws and the terms of service of platforms like YouTube.\n- You confirm that you either own the rights to the content, or the content is in the public domain or properly licensed for your intended use.\n- We do not host, distribute, or store any copyrighted material. Users are solely responsible for any copyright violations or legal consequences.\n- We disclaim all responsibility for how the downloaded content is used after processing.",
+      "Khi sử dụng dịch vụ E-Swap:\n\n- Chúng tôi cam kết bảo mật tuyệt đối thông tin cá nhân của bạn.\n- Dữ liệu được lưu trữ an toàn trên hệ thống Supabase với mã hóa đầu cuối.\n- Thông tin của bạn chỉ được sử dụng để cung cấp trải nghiệm trao đổi và không chia sẻ với bên thứ ba.\n- Bạn có quyền yêu cầu xóa dữ liệu cá nhân bất cứ lúc nào.",
   },
   {
-    title: "2. Subscription Terms",
+    title: "2. Điều khoản đăng ký",
     content:
-      "Your subscription will continue until terminated by you. You may cancel at any time from your account settings.",
+      "Tài khoản của bạn sẽ được duy trì cho đến khi bạn quyết định hủy. Bạn có thể hủy đăng ký bất cứ lúc nào từ cài đặt tài khoản.",
   },
   {
-    title: "3. Payment Terms",
+    title: "3. Thanh toán",
     content:
-      "Payments are processed securely through our designated payment provider. Subscriptions automatically renew unless canceled before the billing cycle ends.",
+      "Các giao dịch thanh toán được xử lý an toàn qua nhà cung cấp thanh toán của chúng tôi. Đăng ký sẽ tự động gia hạn trừ khi bạn hủy trước khi kết thúc chu kỳ thanh toán.",
   },
   {
-    title: "4. Usage Rights",
+    title: "4. Quyền sử dụng",
     content:
-      "This service is intended for personal, non-commercial use only. Unauthorized commercial use is strictly prohibited.",
+      "Dịch vụ này được thiết kế cho mục đích cá nhân, phi thương mại. Việc sử dụng cho mục đích thương mại chưa được ủy quyền là bị nghiêm cấm.",
   },
   {
-    title: "5. Refund Policy",
+    title: "5. Chính sách hoàn tiền",
     content:
-      "Refunds are handled on a case-by-case basis. Please contact support at versedev.store@proton.me within 14 days of your purchase to request a refund.",
+      "Yêu cầu hoàn tiền sẽ được xem xét theo từng trường hợp cụ thể. Vui lòng liên hệ hỗ trợ tại versedev.store@proton.me trong vòng 14 ngày kể từ ngày mua hàng để được hỗ trợ.",
   },
   {
-    title: "6. Service Availability",
+    title: "6. Tính khả dụng của dịch vụ",
     content:
-      "We strive for 99.9% uptime, but do not guarantee uninterrupted access. We reserve the right to modify, suspend, or discontinue any features or functionality at any time without notice.",
+      "Chúng tôi cam kết duy trì tỷ lệ hoạt động 99.9%, tuy nhiên không đảm bảo truy cập liên tục 100%. Chúng tôi có quyền sửa đổi, tạm ngừng hoặc ngừng cung cấp bất kỳ tính năng nào mà không cần thông báo trước.",
   },
   {
-    title: "7. Limitation of Liability",
+    title: "7. Giới hạn trách nhiệm",
     content:
-      'This service is provided "as is", with no warranties or guarantees of any kind. We shall not be held liable for any direct or indirect damages resulting from your use of the service.',
+      'Dịch vụ được cung cấp "nguyên trạng", không có bảo đảm hoặc đảm bảo dưới bất kỳ hình thức nào. Chúng tôi không chịu trách nhiệm cho bất kỳ thiệt hại trực tiếp hoặc gián tiếp nào phát sinh từ việc bạn sử dụng dịch vụ.',
   },
 ];
