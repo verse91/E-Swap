@@ -40,16 +40,16 @@ export function NavbarMain() {
 
     const navItems = [
         {
-            name: "Features",
+            name: "Tính năng",
             link: "/features",
         },
         {
-            name: "Pricing",
+            name: "Bảng giá",
             link: "/pricing",
             isDrawer: true, // Special flag for pricing
         },
         {
-            name: "Contact",
+            name: "Liên hệ",
             link: "/contact",
         },
     ];
@@ -146,7 +146,7 @@ export function NavbarMain() {
                             </div>
                         ) : (
                             <SignInModal
-                                trigger={<NavbarButton variant="primary">Sign in</NavbarButton>}
+                                trigger={<NavbarButton variant="primary">Đăng nhập</NavbarButton>}
                             />
                         )}
                     </div>

@@ -44,7 +44,7 @@ const creditOptions: CreditOption[] = [
     {
         id: "premium",
         packName: "Gói E-Max",
-        price: "1.019.400",
+        price: "849.000",
         originalPrice: "1.699.000",
         discount: 50,
     },

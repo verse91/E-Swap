@@ -3,9 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-
+import { InfiniteSlider } from '@/components/ui/homepage/infinite-slider';
+import { ProgressiveBlur } from '@/components/ui/homepage/progressive-blur';
+import Testimonials from '@/components/ui/homepage/testimonials-data';
 const HeroSection = () => {
-    const [menuOpen, setMenuOpen] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
@@ -180,7 +181,95 @@ const HeroSection = () => {
                         </div>
                     </div>
                 </section>
+
+                <div className="absolute bottom-10 left-0 right-0 py-8">
+                    <div className="group relative m-auto max-w-6xl px-6">
+
+                        <div className="flex flex-col items-center md:flex-row">
+                            <div className="md:max-w-44 md:border-r md:pr-6">
+                                <p className="text-end text-sm text-black">Lựa chọn hàng đầu của hàng loạt doanh nghiệp</p>
+                            </div>
+                            <div className="relative py-6 md:w-[calc(100%-11rem)]">
+                                <InfiniteSlider
+                                    durationOnHover={20}
+                                    duration={40}
+                                    gap={112}>
+                                    <div className="flex">
+                                        <img
+                                            className="mx-auto h-10 w-fit dark:invert"
+                                            src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Shopee.svg"
+                                            alt="Shopee Logo"
+                                            height="264"
+                                            width="auto"
+                                        />
+                                    </div>
+
+                                    <div className="flex">
+                                        <img
+                                            className="mx-auto h-10 w-fit dark:invert"
+                                            src="https://upload.wikimedia.org/wikipedia/en/1/12/Grab_%28application%29_logo.svg"
+                                            alt="Grab Logo"
+                                            height="16"
+                                            width="auto"
+                                        />
+                                    </div>
+                                    <div className="flex">
+                                        <img
+                                            className="mx-auto h-10 w-fit dark:invert"
+                                            src="https://upload.wikimedia.org/wikipedia/commons/8/80/Viettel_Post_logo.svg"
+                                            alt="Viettel Post Logo"
+                                            height="16"
+                                            width="auto"
+                                        />
+                                    </div>
+                                    <div className="flex">
+                                        <img
+                                            className="mx-auto h-10 w-fit dark:invert"
+                                            src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Lazada_%282019%29.svg"
+                                            alt="Lazada Logo"
+                                            height="20"
+                                            width="auto"
+                                        />
+                                    </div>
+                                    <div className="flex">
+                                        <img
+                                            className="mx-auto h-8 w-fit dark:invert"
+                                            src="https://cdn.haitrieu.com/wp-content/uploads/2023/10/Logo-Cong-ty-Quoc-te-Son-Ha.png"
+                                            alt="Son Ha Logo"
+                                            height="20"
+                                            width="auto"
+                                        />
+                                    </div>
+                                    <div className="flex">
+                                        <img
+                                            className="mx-auto h-10 w-fit dark:invert"
+                                            src="https://upload.wikimedia.org/wikipedia/commons/2/23/%E4%BD%90%E5%B7%9D%E6%80%A5%E4%BE%BF%E3%83%AD%E3%82%B4.svg"
+                                            alt="Sagawa Logo"
+                                            height="16"
+                                            width="auto"
+                                        />
+                                    </div>
+
+                                </InfiniteSlider>
+
+                                <div className="bg-linear-to-r from-green-100 absolute inset-y-0 left-0 w-20"></div>
+                                <div className="bg-linear-to-l from-green-100 absolute inset-y-0 right-0 w-20"></div>
+                                <ProgressiveBlur
+                                    className="pointer-events-none absolute left-0 top-0 h-full w-20"
+                                    direction="left"
+                                    blurIntensity={1}
+                                />
+                                <ProgressiveBlur
+                                    className="pointer-events-none absolute right-0 top-0 h-full w-20"
+                                    direction="right"
+                                    blurIntensity={1}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <Testimonials />
         </>
     );
 };

@@ -21,6 +21,7 @@
     "next": "15.5.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-use-measure": "^2.1.7",
     "supabase": "^2.48.3",
     "tabler": "^1.0.0-alpha.8",
     "tailwind-merge": "^3.3.1",
