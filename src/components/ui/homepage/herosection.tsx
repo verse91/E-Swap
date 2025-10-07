@@ -8,6 +8,7 @@ import { InfiniteSlider } from '@/components/ui/homepage/infinite-slider';
 import { ProgressiveBlur } from '@/components/ui/homepage/progressive-blur';
 const HeroSection = () => {
     const [isLoaded, setIsLoaded] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
 
     useEffect(() => {
         setIsLoaded(true);
