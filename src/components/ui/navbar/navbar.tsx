@@ -145,9 +145,7 @@ export function NavbarMain() {
                                 </DropdownMenu>
                             </div>
                         ) : (
-                            <Link href="/sign-in">
-                                <NavbarButton variant="primary">Sign in</NavbarButton>
-                            </Link>
+                            <NavbarButton href="/sign-in" variant="primary">Đăng nhập</NavbarButton>
                         )}
                     </div>
                 </NavBody>
@@ -243,11 +241,7 @@ export function NavbarMain() {
                                     </div>
                                 </div>
                             ) : (
-                                <Link href="/sign-in">
-                                    <NavbarButton variant="primary" className="w-full">
-                                        Sign in
-                                    </NavbarButton>
-                                </Link>
+                                <NavbarButton href="/sign-in" variant="primary" className="w-full">Đăng nhập</NavbarButton>
                             )}
                             {/* <NavbarButton */}
                             {/*     target="_blank" */}
