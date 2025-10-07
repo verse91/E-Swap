@@ -35,7 +35,7 @@ const HeroSection = () => {
             <div className="relative bg-gradient-to-b from-green-50 to-green-100 overflow-hidden min-h-screen">
                 {/* Animated background elements - Optimized for performance */}
                 <div className="absolute inset-0">
-                    <div className="absolute top-20 left-10 w-64 h-64 bg-green-200 rounded-full mix-blend-multiply filter blur-lg opacity-50 animate-pulse" style={{animationDuration: '4s'}}></div>
+                    <div className="absolute top-20 left-10 w-64 h-64 bg-green-200 rounded-full mix-blend-multiply filter blur-lg opacity-50 animate-pulse" style={{ animationDuration: '4s' }}></div>
                     <div className="absolute top-40 right-10 w-64 h-64 bg-green-300 rounded-full mix-blend-multiply filter blur-lg opacity-50 animate-pulse" style={{ animationDelay: '2s', animationDuration: '4s' }}></div>
                     <div className="absolute -bottom-8 left-20 w-64 h-64 bg-green-400 rounded-full mix-blend-multiply filter blur-lg opacity-50 animate-pulse" style={{ animationDelay: '4s', animationDuration: '4s' }}></div>
                 </div>
@@ -170,16 +170,16 @@ const HeroSection = () => {
                                 <div className="relative">
                                     <Image
                                         className="w-full animate-bounce"
-                                        src="https://cdn.rareblocks.xyz/collection/celebration/images/hero/4/phone-mockup.png"
-                                        alt="Phone Mockup"
+                                        src="/assets/model.png"
+                                        alt="Electric motorbike mockup"
                                         width={600}
                                         height={900}
                                         priority
-                                    style={{
-                                        animation: 'float 6s ease-in-out infinite',
-                                        animationDelay: '0.5s',
-                                        willChange: 'transform'
-                                    }}
+                                        style={{
+                                            animation: 'ease-in-out',
+                                            animationDelay: '0.5s',
+                                            willChange: 'transform'
+                                        }}
                                     />
                                     <div className="absolute top-20 -left-4 w-6 h-6 bg-green-300 rounded-full opacity-40 animate-pulse" style={{ animationDelay: '2s', animationDuration: '3s' }}></div>
                                     <div className="absolute top-40 -right-6 w-4 h-4 bg-green-400 rounded-full opacity-40 animate-pulse" style={{ animationDelay: '3s', animationDuration: '3s' }}></div>
@@ -194,7 +194,7 @@ const HeroSection = () => {
                     <div className="group relative m-auto max-w-6xl px-6">
 
                         <div className="flex flex-col items-center md:flex-row">
-                            <motion.div 
+                            <motion.div
                                 className="md:max-w-44 md:pr-6"
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
@@ -265,13 +265,13 @@ const HeroSection = () => {
 
                                 </InfiniteSlider>
 
-                                <motion.div 
+                                <motion.div
                                     className="bg-linear-to-r from-green-100 absolute inset-y-0 left-0 w-20"
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ duration: 0.8, delay: 0.5 }}
                                 ></motion.div>
-                                <motion.div 
+                                <motion.div
                                     className="bg-linear-to-l from-green-100 absolute inset-y-0 right-0 w-20"
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
