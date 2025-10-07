@@ -434,7 +434,6 @@ export default function SignInPage() {
                   <Link href="/terms" className="text-green-600 dark:text-green-500 hover:underline font-medium">
                     Điều khoản sử dụng
                   </Link>
-                  {" "}và cam kết sử dụng dịch vụ đổi pin một cách có trách nhiệm
                 </Label>
               </div>
 
