@@ -3,6 +3,7 @@ import HeroSection from '@/components/ui/homepage/herosection'
 import GallerySkeleton from '@/components/ui/homepage/gallery-skeleton'
 import Testimonials from '@/components/ui/homepage/testimonials-data'
 import { NavbarMain } from '@/components/ui/navbar/navbar';
+import Footer from '@/components/footer';
 const HomePage = () => {
     return (
         <div className="relative min-h-screen w-full">
@@ -13,6 +14,7 @@ const HomePage = () => {
             <GallerySkeleton />
 
             <Testimonials />
+            <Footer />
         </div>
     )
 }
