@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import { useAuth } from "@/lib/auth-context";
 import { supabase } from "@/lib/supabaseClients";
 import { cn } from "@/lib/utils";
+import TermsDrawer from "@/components/ui/terms-drawer";
 
 export default function SignInPage() {
     const router = useRouter();
@@ -431,9 +432,13 @@ export default function SignInPage() {
                                 />
                                 <Label htmlFor="accept-terms" className="text-sm text-muted-foreground cursor-pointer leading-relaxed">
                                     Tôi đồng ý với
-                                    <Link href="/terms" className="text-green-600 dark:text-green-500 hover:underline font-medium">
-                                        Điều khoản sử dụng
-                                    </Link>
+                                    <TermsDrawer
+                                        trigger={
+                                            <span className="text-green-600 dark:text-green-500 hover:underline font-medium cursor-pointer">
+                                                Điều khoản sử dụng
+                                            </span>
+                                        }
+                                    />
                                 </Label>
                             </div>
 
