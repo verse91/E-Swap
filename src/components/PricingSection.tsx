@@ -240,7 +240,7 @@ export default function PricingSection() {
                 <div className="flex flex-wrap justify-center gap-4 mb-12">
                     <button
                         onClick={() => setActiveTab('selfcharge')}
-                        className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${activeTab === 'selfcharge'
+                        className={`flex items-center gap-2 px-6 py-3 cursor-pointer rounded-full font-semibold transition-all duration-300 ${activeTab === 'selfcharge'
                             ? 'bg-orange-500 text-white shadow-lg'
                             : 'bg-white text-gray-700 hover:bg-orange-50 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
                             }`}
@@ -250,7 +250,7 @@ export default function PricingSection() {
                     </button>
                     <button
                         onClick={() => setActiveTab('battery')}
-                        className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${activeTab === 'battery'
+                        className={`flex items-center cursor-pointer gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${activeTab === 'battery'
                             ? 'bg-blue-500 text-white shadow-lg'
                             : 'bg-white text-gray-700 hover:bg-blue-50 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
                             }`}
@@ -260,7 +260,7 @@ export default function PricingSection() {
                     </button>
                     <button
                         onClick={() => setActiveTab('bikerental')}
-                        className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${activeTab === 'bikerental'
+                        className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all cursor-pointer duration-300 ${activeTab === 'bikerental'
                             ? 'bg-purple-500 text-white shadow-lg'
                             : 'bg-white text-gray-700 hover:bg-purple-50 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
                             }`}
@@ -333,12 +333,12 @@ export default function PricingSection() {
                             <div className="flex gap-2">
                                 <button
                                     onClick={() => setSelectedPackage(pkg.id)}
-                                    className="flex-1 py-2 px-3 rounded-lg font-medium transition-all duration-300 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+                                    className="flex-1 py-2 px-3 rounded-lg font-medium transition-all duration-300 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer"
                                 >
                                     Chi tiết
                                 </button>
                                 <button
-                                    className={`flex-1 py-2 px-3 rounded-lg font-semibold transition-all duration-300 bg-gradient-to-r ${pkg.color} text-white hover:shadow-lg`}
+                                    className={`flex-1 py-2 px-3 rounded-lg font-semibold transition-all duration-300 bg-gradient-to-r ${pkg.color} text-white hover:shadow-lg cursor-pointer`}
                                 >
                                     Mua
                                 </button>
