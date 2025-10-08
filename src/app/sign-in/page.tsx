@@ -17,6 +17,15 @@ import { getAuthErrorMessage } from "@/lib/auth-utils";
 export default function SignInPage() {
     const router = useRouter();
     const { user } = useAuth();
+    
+    // Handle auth callback errors
+    useEffect(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const error = urlParams.get('error');
+        if (error === 'auth_callback_failed') {
+            setError('Xác thực không thành công. Vui lòng thử lại.');
+        }
+    }, []);
     const [mode, setMode] = useState<"sign-in" | "sign-up">("sign-in");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
