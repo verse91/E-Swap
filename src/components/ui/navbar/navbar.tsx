@@ -24,6 +24,11 @@ import Image from "next/image";
 
 export function NavbarMain() {
     const { user, signOut, loading } = useAuth();
+    
+    // Debug user data
+    console.log('User data:', user);
+    console.log('User metadata:', user?.user_metadata);
+    console.log('User picture:', user?.user_metadata?.picture);
 
     const handleSignOut = async () => {
         try {
@@ -92,6 +97,10 @@ export function NavbarMain() {
                                                 width={35}
                                                 height={35}
                                                 className="rounded-full"
+                                                onError={(e) => {
+                                                    console.log('Avatar image failed to load:', e);
+                                                    e.currentTarget.src = "/assets/icons/logo-no-bg.png";
+                                                }}
                                             />
                                         </NavbarButton>
                                     </DropdownMenuTrigger>
@@ -164,6 +173,10 @@ export function NavbarMain() {
                                             width={35}
                                             height={35}
                                             className="rounded-full border shadow"
+                                            onError={(e) => {
+                                                console.log('Mobile avatar image failed to load:', e);
+                                                e.currentTarget.src = "/assets/icons/logo-no-bg.png";
+                                            }}
                                         />
                                         <div className="flex flex-col">
                                             <span className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
