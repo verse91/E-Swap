@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -43,14 +42,6 @@
   --radius-xl: calc(var(--radius) + 4px);
   --animate-shine: shine 5s linear infinite;
 
-  @keyframes shine {
-    0% {
-      background-position: 100%;
-    }
-    100% {
-      background-position: -100%;
-    }
-  }
   @keyframes shine {
     0% {
       background-position: 100%;
