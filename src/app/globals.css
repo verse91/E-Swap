@@ -5,6 +5,11 @@
   --foreground: #171717;
 }
 
+/* Form Input Styles */
+.form-input {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 mb-4;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

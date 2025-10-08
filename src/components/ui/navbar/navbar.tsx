@@ -21,14 +21,9 @@ import {
 } from "@/components/ui/navbar/resizable-navbar";
 import { useState, useRef } from "react";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import SmoothDrawer from "@/components/ui/subcription/smooth-drawer";
-import { useUserCredits } from "@/lib/useUserCredits";
-import Link from "next/link";
 
 export function NavbarMain() {
     const { user, signOut, loading } = useAuth();
-    const { userCredits, loading: creditsLoading } = useUserCredits(user?.id);
 
     const handleSignOut = async () => {
         try {
@@ -40,13 +35,12 @@ export function NavbarMain() {
 
     const navItems = [
         {
-            name: "Tính năng",
-            link: "/features",
+            name: "Tìm trạm",
+            link: "/tim-tram",
         },
         {
             name: "Bảng giá",
-            link: "/pricing",
-            isDrawer: true, // Special flag for pricing
+            link: "/bang-gia",
         },
         {
             name: "Liên hệ",
@@ -55,7 +49,6 @@ export function NavbarMain() {
     ];
 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const pricingDrawerRef = useRef<HTMLButtonElement>(null);
 
     return (
         <div className="relative w-full">
@@ -66,7 +59,6 @@ export function NavbarMain() {
                     <NavItems
                         className="text-white"
                         items={navItems}
-                        onPricingClick={() => pricingDrawerRef.current?.click()}
                     />
                     <div className="flex items-center gap-4">
                         {/* <NavbarButton */}
@@ -85,25 +77,6 @@ export function NavbarMain() {
                             </div>
                         ) : user ? (
                             <div className="flex items-center gap-3">
-                                <SmoothDrawer
-                                    isUserLoggedIn={true}
-                                    userCredits={userCredits}
-                                    trigger={
-                                        <NavbarButton
-                                            variant="primary"
-                                            className="flex items-center gap-2 mr-2"
-                                        >
-                                            <i className="bx bxs-credit-card-alt text-sm"></i>
-                                            {creditsLoading ? (
-                                                <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
-                                            ) : userCredits > 0 ? (
-                                                `${userCredits} credits`
-                                            ) : (
-                                                "Buy credits"
-                                            )}
-                                        </NavbarButton>
-                                    }
-                                />
                                 <DropdownMenu>
                                     <DropdownMenuTrigger asChild>
                                         <NavbarButton
@@ -215,22 +188,6 @@ export function NavbarMain() {
                                         </div>
                                     </div>
                                     <div className="border-t border-neutral-200 dark:border-neutral-700 pt-2">
-                                        <SmoothDrawer
-                                            isUserLoggedIn={true}
-                                            userCredits={userCredits}
-                                            trigger={
-                                                <button className="w-full text-left px-2 py-1 text-sm text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded">
-                                                    <i className="bx bxs-credit-card-alt text-sm mr-2"></i>
-                                                    {creditsLoading ? (
-                                                        <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin inline-block"></div>
-                                                    ) : userCredits > 0 ? (
-                                                        `${userCredits} credits`
-                                                    ) : (
-                                                        "Buy credits"
-                                                    )}
-                                                </button>
-                                            }
-                                        />
                                         <button
                                             className="w-full text-left px-2 py-1 text-sm text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded"
                                             onClick={handleSignOut}
@@ -260,25 +217,6 @@ export function NavbarMain() {
                 </MobileNav>
             </Navbar>
 
-            {/* Pricing Drawer */}
-            <SmoothDrawer
-                title="Bảng giá dịch vụ"
-                description=""
-                primaryButtonText="Mua"
-                secondaryButtonText="Chi tiết"
-                onSecondaryAction={() => { }}
-                isUserLoggedIn={!!user}
-                userCredits={userCredits || 0}
-                trigger={
-                    <button
-                        ref={pricingDrawerRef}
-                        style={{ display: 'none' }}
-                        aria-hidden="true"
-                    >
-                        Hidden Trigger
-                    </button>
-                }
-            />
         </div>
     );
 }

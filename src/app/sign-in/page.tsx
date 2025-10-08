@@ -12,6 +12,7 @@ import { useAuth } from "@/lib/auth-context";
 import { supabase } from "@/lib/supabaseClients";
 import { cn } from "@/lib/utils";
 import TermsDrawer from "@/components/ui/terms-drawer";
+import { getAuthErrorMessage } from "@/lib/auth-utils";
 
 export default function SignInPage() {
     const router = useRouter();
@@ -21,7 +22,6 @@ export default function SignInPage() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [loading, setLoading] = useState(false);
-    const [accepted, setAccepted] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
     const [showPassword, setShowPassword] = useState(false);
@@ -39,11 +39,6 @@ export default function SignInPage() {
         event.preventDefault();
         setError(null);
         setSuccessMessage(null);
-
-        if (!accepted) {
-            setError("Vui lòng đồng ý với Điều khoản sử dụng trước khi tiếp tục.");
-            return;
-        }
 
         if (!email.trim() || !password.trim()) {
             setError("Email và mật khẩu là bắt buộc.");
@@ -80,7 +75,7 @@ export default function SignInPage() {
                     email,
                     password,
                     options: {
-                        emailRedirectTo: `${window.location.origin}/auth/callback`,
+                        emailRedirectTo: `${window.location.origin}`,
                     },
                 });
 
@@ -98,11 +93,7 @@ export default function SignInPage() {
             resetForm();
         } catch (err) {
             console.error("Authentication error:", err);
-            setError(
-                err instanceof Error
-                    ? err.message
-                    : "Đã xảy ra lỗi hệ thống. Vui lòng thử lại sau."
-            );
+            setError(getAuthErrorMessage(err));
         } finally {
             setLoading(false);
         }
@@ -112,17 +103,12 @@ export default function SignInPage() {
         setError(null);
         setSuccessMessage(null);
 
-        if (!accepted) {
-            setError("Vui lòng đồng ý với Điều khoản sử dụng trước khi tiếp tục.");
-            return;
-        }
-
         setLoading(true);
         try {
             const { error: googleError } = await supabase.auth.signInWithOAuth({
                 provider: "google",
                 options: {
-                    redirectTo: `${window.location.origin}/auth/callback`,
+                    redirectTo: `${window.location.origin}`,
                     queryParams: {
                         access_type: "offline",
                         prompt: "consent",
@@ -137,11 +123,7 @@ export default function SignInPage() {
             setSuccessMessage("Đang chuyển tới Google để xác thực...");
         } catch (err) {
             console.error("Google sign-in error:", err);
-            setError(
-                err instanceof Error
-                    ? err.message
-                    : "Không thể kết nối Google. Vui lòng thử lại."
-            );
+            setError(getAuthErrorMessage(err));
         } finally {
             setLoading(false);
         }
@@ -421,17 +403,10 @@ export default function SignInPage() {
                                 </div>
                             )}
 
-                            {/* Terms checkbox */}
-                            <div className="flex items-start space-x-3 pt-2">
-                                <input
-                                    type="checkbox"
-                                    id="accept-terms"
-                                    checked={accepted}
-                                    onChange={(e) => setAccepted(e.target.checked)}
-                                    className="mt-0.5 w-4 h-4 rounded border-gray-300 text-green-600 focus:ring-green-500 focus:ring-offset-0 cursor-pointer transition-all"
-                                />
-                                <Label htmlFor="accept-terms" className="text-sm text-muted-foreground cursor-pointer leading-relaxed">
-                                    Tôi đồng ý với
+                            {/* Terms agreement */}
+                            <div className="text-center pt-2">
+                                <p className="text-sm text-muted-foreground leading-relaxed">
+                                    Bằng việc xác nhận bạn đã đồng ý với{" "}
                                     <TermsDrawer
                                         trigger={
                                             <span className="text-green-600 dark:text-green-500 hover:underline font-medium cursor-pointer">
@@ -439,7 +414,7 @@ export default function SignInPage() {
                                             </span>
                                         }
                                     />
-                                </Label>
+                                </p>
                             </div>
 
                             {/* Submit Button */}
