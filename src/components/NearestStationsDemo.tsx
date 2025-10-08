@@ -209,10 +209,10 @@ export default function NearestStationsDemo() {
                             <div
                                 key={station.id}
                                 className={`bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 border ${station.status === 'open'
-                                    ? 'border-gray-200 dark:border-gray-700'
+                                    ? 'border-green-200 dark:border-gray-700'
                                     : station.status === 'closed'
-                                        ? 'border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-900/10'
-                                        : 'border-yellow-200 dark:border-yellow-800 bg-yellow-50 dark:bg-yellow-900/10'
+                                        ? 'border-red-200 dark:border-red-800 bg-red-100 dark:bg-red-900/10'
+                                        : 'border-yellow-200 dark:border-yellow-800 dark:bg-yellow-900/10'
                                     }`}
                             >
                                 <div className="flex items-start justify-between">

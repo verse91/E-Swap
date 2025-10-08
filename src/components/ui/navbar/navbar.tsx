@@ -40,13 +40,12 @@ export function NavbarMain() {
 
     const navItems = [
         {
-            name: "Tính năng",
-            link: "/features",
+            name: "Tìm trạm",
+            link: "/tim-tram",
         },
         {
             name: "Bảng giá",
-            link: "/pricing",
-            isDrawer: true, // Special flag for pricing
+            link: "/bang-gia",
         },
         {
             name: "Liên hệ",

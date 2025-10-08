@@ -57,7 +57,7 @@ export default function PricingSection() {
             name: 'RIDER-UNL',
             price: '918.000',
             period: 'tháng',
-            pins: '3',
+            pins: '4',
             km: 'Không giới hạn',
             description: 'Không giới hạn quãng đường',
             features: ['Quãng đường: Không giới hạn', 'Số pin: 3', 'Tự sạc tại nhà', 'Không phí vượt cước'],
@@ -71,7 +71,7 @@ export default function PricingSection() {
             name: 'ELITE-MAX',
             price: '1.188.000',
             period: 'tháng',
-            pins: '4',
+            pins: '5',
             km: 'Không giới hạn',
             description: 'Gói tối đa cho người dùng chuyên nghiệp',
             features: ['Quãng đường: Không giới hạn', 'Số pin: 4', 'Tự sạc tại nhà', 'Hiệu suất cao nhất'],
@@ -130,7 +130,7 @@ export default function PricingSection() {
             name: 'FREEDOM-X',
             price: '2.999.000',
             period: 'tháng',
-            pins: '3',
+            pins: '4',
             km: 'Không giới hạn',
             description: 'Gói tự do không giới hạn',
             features: ['Quãng đường: Không giới hạn', 'Số pin: 3', 'Đổi pin miễn phí', 'Không phí vượt cước'],
@@ -147,7 +147,7 @@ export default function PricingSection() {
             name: 'XE MỚI (3 PIN)',
             price: '1.283.040',
             period: 'tháng',
-            pins: '3',
+            pins: '1',
             km: '0 km',
             description: 'Xe mới đăng ký (ODO dưới 50km)',
             features: ['Xe mới đăng ký', 'Số pin: 3', 'Tự sạc tại nhà', 'Dành cho doanh nghiệp'],
@@ -161,7 +161,7 @@ export default function PricingSection() {
             name: 'XE ĐÃ THUÊ (3 PIN)',
             price: '1.069.200',
             period: 'tháng',
-            pins: '3',
+            pins: '2',
             km: '0 km',
             description: 'Xe đã qua sử dụng hoặc đã thuê',
             features: ['Xe đã qua sử dụng', 'Số pin: 3', 'Tự sạc tại nhà', 'Áp dụng cho tất cả khách hàng'],
@@ -241,8 +241,8 @@ export default function PricingSection() {
                     <button
                         onClick={() => setActiveTab('selfcharge')}
                         className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${activeTab === 'selfcharge'
-                                ? 'bg-orange-500 text-white shadow-lg'
-                                : 'bg-white text-gray-700 hover:bg-orange-50 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
+                            ? 'bg-orange-500 text-white shadow-lg'
+                            : 'bg-white text-gray-700 hover:bg-orange-50 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
                             }`}
                     >
                         <Zap className="w-5 h-5" />
@@ -251,8 +251,8 @@ export default function PricingSection() {
                     <button
                         onClick={() => setActiveTab('battery')}
                         className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${activeTab === 'battery'
-                                ? 'bg-blue-500 text-white shadow-lg'
-                                : 'bg-white text-gray-700 hover:bg-blue-50 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
+                            ? 'bg-blue-500 text-white shadow-lg'
+                            : 'bg-white text-gray-700 hover:bg-blue-50 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
                             }`}
                     >
                         <Battery className="w-5 h-5" />
@@ -261,8 +261,8 @@ export default function PricingSection() {
                     <button
                         onClick={() => setActiveTab('bikerental')}
                         className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${activeTab === 'bikerental'
-                                ? 'bg-purple-500 text-white shadow-lg'
-                                : 'bg-white text-gray-700 hover:bg-purple-50 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
+                            ? 'bg-purple-500 text-white shadow-lg'
+                            : 'bg-white text-gray-700 hover:bg-purple-50 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
                             }`}
                     >
                         <Car className="w-5 h-5" />
@@ -279,8 +279,8 @@ export default function PricingSection() {
 
                 {/* Pricing Cards */}
                 <div className={`max-w-7xl mx-auto ${activeTab === 'battery'
-                        ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'
-                        : 'flex flex-wrap justify-center gap-6'
+                    ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'
+                    : 'flex flex-wrap justify-center gap-6'
                     }`}>
                     {currentPackages.map((pkg) => (
                         <div
