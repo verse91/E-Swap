@@ -17,7 +17,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-emerald-700 via-green-600 to-teal-600 dark:from-emerald-300 dark:via-green-300 dark:to-teal-300 bg-clip-text text-transparent">
-              Công ty Cổ phần<br />Phương tiện điện thông minh Selex
+              Công ty Cổ phần<br />Phương tiện điện thông minh E-SWAP
             </h1>
             <p className="text-lg md:text-xl text-emerald-700/80 dark:text-emerald-300/80 leading-relaxed">
               Thúc đẩy sự phát triển bền vững của Việt Nam và thế giới thông qua phương tiện điện thông minh
@@ -32,7 +32,7 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto">
             <div className="prose prose-lg dark:prose-invert max-w-none">
               <p className="text-lg leading-relaxed text-muted-foreground">
-                Selex Motors được thành lập vào năm 2018 trong một căn phòng nhỏ 10m² với khát vọng thúc đẩy sự phát triển bền vững của Việt Nam và thế giới thông qua phương tiện điện thông minh, đưa năng lượng tái tạo vào giao thông. Selex là viết tắt của <strong>Smart Electric Vehicles X</strong>, "X" vừa là một ẩn số, vừa có thể là một dòng phương tiện điện nào đó và cũng có nghĩa là X-factor (nhân tố X).
+                E-SWAP Motors được thành lập vào năm 2018 trong một căn phòng nhỏ 10m² với khát vọng thúc đẩy sự phát triển bền vững của Việt Nam và thế giới thông qua phương tiện điện thông minh, đưa năng lượng tái tạo vào giao thông. E-SWAP là viết tắt của <strong>Smart Electric Vehicles X</strong>, "X" vừa là một ẩn số, vừa có thể là một dòng phương tiện điện nào đó và cũng có nghĩa là X-factor (nhân tố X).
               </p>
 
               <p className="text-lg leading-relaxed text-muted-foreground mt-6">
@@ -101,25 +101,25 @@ export default function AboutPage() {
                 {
                   icon: Building2,
                   title: "Bền vững",
-                  description: "Selex Motors hướng tới sự bền vững về môi trường, bền vững về chất lượng và bền vững trong giá trị mà công ty mang lại cho cộng đồng.",
+                  description: "E-SWAP Motors hướng tới sự bền vững về môi trường, bền vững về chất lượng và bền vững trong giá trị mà công ty mang lại cho cộng đồng.",
                   color: "from-emerald-500 to-green-600"
                 },
                 {
                   icon: Lightbulb,
                   title: "Khả năng",
-                  description: "Selex Motors luôn thách thức giới hạn để mang lại khả năng mới, góp phần tích cực vào sự phát triển lâu dài của xã hội.",
+                  description: "E-SWAP Motors luôn thách thức giới hạn để mang lại khả năng mới, góp phần tích cực vào sự phát triển lâu dài của xã hội.",
                   color: "from-green-500 to-teal-600"
                 },
                 {
                   icon: Award,
                   title: "Dịch vụ",
-                  description: "Selex Motors cung cấp những dịch vụ về giao thông thông minh, thân thiện môi trường, đem lại trải nghiệm tốt nhất cho khách hàng.",
+                  description: "E-SWAP Motors cung cấp những dịch vụ về giao thông thông minh, thân thiện môi trường, đem lại trải nghiệm tốt nhất cho khách hàng.",
                   color: "from-teal-500 to-cyan-600"
                 },
                 {
                   icon: Heart,
                   title: "Hân hoan",
-                  description: "Selex Motors mang đến niềm hân hoan, hạnh phúc cho khách hàng của mình thông qua chất lượng của sản phẩm và dịch vụ.",
+                  description: "E-SWAP Motors mang đến niềm hân hoan, hạnh phúc cho khách hàng của mình thông qua chất lượng của sản phẩm và dịch vụ.",
                   color: "from-cyan-500 to-blue-600"
                 }
               ].map((value, idx) => (
@@ -152,17 +152,17 @@ export default function AboutPage() {
                 {
                   icon: Lightbulb,
                   title: "Nghiên cứu & Phát triển",
-                  description: "Sở hữu đội ngũ nhân lực công nghệ cao, Selex làm chủ toàn bộ quá trình nghiên cứu, phát triển sản phẩm cũng như các công nghệ lõi của hệ sinh thái. Công ty có 10 bằng sáng chế, 5 thiết kế kiểu dáng công nghiệp và 4 nhãn hiệu được đăng ký bảo hộ."
+                  description: "Sở hữu đội ngũ nhân lực công nghệ cao, E-SWAP làm chủ toàn bộ quá trình nghiên cứu, phát triển sản phẩm cũng như các công nghệ lõi của hệ sinh thái. Công ty có 10 bằng sáng chế, 5 thiết kế kiểu dáng công nghiệp và 4 nhãn hiệu được đăng ký bảo hộ."
                 },
                 {
                   icon: Factory,
                   title: "Sản xuất hàng loạt",
-                  description: "Với nhà máy riêng, Selex làm chủ sản xuất hàng loạt xe máy điện, pin, trạm đổi pin, và các thành phần quan trọng trên xe như điều khiển động cơ, bộ quản lý năng lượng, màn hình."
+                  description: "Với nhà máy riêng, E-SWAP làm chủ sản xuất hàng loạt xe máy điện, pin, trạm đổi pin, và các thành phần quan trọng trên xe như điều khiển động cơ, bộ quản lý năng lượng, màn hình."
                 },
                 {
                   icon: Database,
                   title: "Dịch vụ giao thông thông minh",
-                  description: "Với việc phát triển một hệ sinh thái xe máy điện toàn diện, Selex hướng tới cung cấp những dịch vụ mới mẻ với nhiều giá trị cho người dùng dựa trên dữ liệu và phần mềm."
+                  description: "Với việc phát triển một hệ sinh thái xe máy điện toàn diện, E-SWAP hướng tới cung cấp những dịch vụ mới mẻ với nhiều giá trị cho người dùng dựa trên dữ liệu và phần mềm."
                 }
               ].map((competency, idx) => (
                 <div key={idx} className="relative group">
@@ -193,7 +193,7 @@ export default function AboutPage() {
             </h2>
             <div className="prose prose-lg dark:prose-invert max-w-none">
               <p className="text-lg leading-relaxed text-muted-foreground mb-6">
-                Đội ngũ nhân sự của Selex Motors là một tập thể có trình độ cao, có kinh nghiệm học tập và làm việc từ nhiều nước trên thế giới như <strong>Mỹ, Israel, Nhật Bản, Hàn Quốc, Hà Lan, Đài Loan</strong>,… và nhiều tập đoàn lớn như <strong>Honda, Ford, GM, PROTON, SYM, Yamaha, Viettel</strong>,…
+                Đội ngũ nhân sự của E-SWAP Motors là một tập thể có trình độ cao, có kinh nghiệm học tập và làm việc từ nhiều nước trên thế giới như <strong>Mỹ, Israel, Nhật Bản, Hàn Quốc, Hà Lan, Đài Loan</strong>,… và nhiều tập đoàn lớn như <strong>Honda, Ford, GM, PROTON, SYM, Yamaha, Viettel</strong>,…
               </p>
               <p className="text-lg leading-relaxed text-muted-foreground mb-8">
                 Chúng tôi cùng nhau chia sẻ khát vọng xây dựng một công ty công nghệ sâu, phát triển bền vững, lâu dài, có khả năng cạnh tranh với thế giới. Chúng tôi sẵn sàng từ bỏ những lợi ích ngắn hạn và thoát khỏi vùng an toàn, dấn thân đón nhận thách thức để kiến tạo những giá trị lớn lao cho cộng đồng và đất nước.
