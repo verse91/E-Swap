@@ -108,7 +108,7 @@ export default function SignInPage() {
             const { error: googleError } = await supabase.auth.signInWithOAuth({
                 provider: "google",
                 options: {
-                    redirectTo: `https://https://eswapteam.vercel.app/`,
+                    redirectTo: `https://eswapteam.vercel.app/`,
                     queryParams: {
                         access_type: "offline",
                         prompt: "consent",
