@@ -138,27 +138,14 @@ export function NavbarMain() {
                         onClose={() => setIsMobileMenuOpen(false)}
                     >
                         {navItems.map((item, idx) => (
-                            item.isDrawer ? (
-                                <button
-                                    key={`mobile-link-${idx}`}
-                                    onClick={() => {
-                                        pricingDrawerRef.current?.click();
-                                        setIsMobileMenuOpen(false);
-                                    }}
-                                    className="relative text-neutral-600 dark:text-neutral-300 text-left"
-                                >
-                                    <span className="block">{item.name}</span>
-                                </button>
-                            ) : (
-                                <a
-                                    key={`mobile-link-${idx}`}
-                                    href={item.link}
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                    className="relative text-neutral-600 dark:text-neutral-300"
-                                >
-                                    <span className="block">{item.name}</span>
-                                </a>
-                            )
+                            <a
+                                key={`mobile-link-${idx}`}
+                                href={item.link}
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className="relative text-neutral-600 dark:text-neutral-300"
+                            >
+                                <span className="block">{item.name}</span>
+                            </a>
                         ))}
                         <div className="flex w-full flex-col gap-4">
                             {loading ? (
