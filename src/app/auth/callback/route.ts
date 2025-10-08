@@ -1,30 +1,21 @@
-import { createClient } from '@supabase/supabase-js'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(request: NextRequest) {
+  console.log('Auth callback hit!')
+  
   const requestUrl = new URL(request.url)
   const code = requestUrl.searchParams.get('code')
-
-  if (code) {
-    try {
-      // Create a server-side Supabase client
-      const supabase = createClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-      )
-      
-      const { error } = await supabase.auth.exchangeCodeForSession(code)
-      
-      if (error) {
-        console.error('Auth callback error:', error)
-        return NextResponse.redirect(new URL('/sign-in?error=auth_callback_failed', request.url))
-      }
-    } catch (error) {
-      console.error('Auth callback error:', error)
-      return NextResponse.redirect(new URL('/sign-in?error=auth_callback_failed', request.url))
-    }
+  const error = requestUrl.searchParams.get('error')
+  const errorDescription = requestUrl.searchParams.get('error_description')
+  
+  console.log('Callback params:', { code, error, errorDescription })
+  
+  // If there's an error from Supabase, redirect to sign-in with error
+  if (error) {
+    console.error('Supabase auth error:', error, errorDescription)
+    return NextResponse.redirect(new URL(`/sign-in?error=${error}&description=${errorDescription || ''}`, request.url))
   }
-
-  // Redirect to home page after successful authentication
+  
+  // For now, just redirect to home - let the client handle the auth
   return NextResponse.redirect(new URL('/', request.url))
 }

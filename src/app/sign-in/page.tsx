@@ -22,8 +22,17 @@ export default function SignInPage() {
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
         const error = urlParams.get('error');
-        if (error === 'auth_callback_failed') {
-            setError('Xác thực không thành công. Vui lòng thử lại.');
+        const description = urlParams.get('description');
+        
+        if (error) {
+            console.log('Auth callback error:', error, description);
+            if (error === 'unexpected_failure') {
+                setError('Lỗi xác thực không mong muốn. Vui lòng kiểm tra cấu hình Supabase và thử lại.');
+            } else if (error === 'access_denied') {
+                setError('Truy cập bị từ chối. Vui lòng thử lại.');
+            } else {
+                setError(`Lỗi xác thực: ${description || error}. Vui lòng thử lại.`);
+            }
         }
     }, []);
     const [mode, setMode] = useState<"sign-in" | "sign-up">("sign-in");
