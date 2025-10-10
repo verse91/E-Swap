@@ -93,41 +93,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }, []);
 
     useEffect(() => {
-        // Handle OAuth redirect with access token in URL fragment
-        const handleOAuthRedirect = async () => {
-            if (typeof window === "undefined") return;
-            
-            const hashParams = new URLSearchParams(window.location.hash.substring(1));
-            const accessToken = hashParams.get('access_token');
-            const refreshToken = hashParams.get('refresh_token');
-            
-            if (accessToken && refreshToken) {
-                console.log('OAuth redirect detected, processing tokens...');
-                try {
-                    const { data, error } = await supabase.auth.setSession({
-                        access_token: accessToken,
-                        refresh_token: refreshToken
-                    });
-                    
-                    if (error) {
-                        console.error('Error setting session from OAuth:', error);
-                    } else {
-                        console.log('OAuth session set successfully:', data);
-                        // Clear the URL fragment
-                        window.history.replaceState({}, document.title, window.location.pathname);
-                    }
-                } catch (error) {
-                    console.error('Error processing OAuth tokens:', error);
-                }
-            }
-        };
-
-        // Get initial session
         const getSession = async () => {
             try {
-                // First handle OAuth redirect if present
-                await handleOAuthRedirect();
-                
                 const {
                     data: { session },
                 } = await supabase.auth.getSession();
@@ -147,45 +114,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         const {
             data: { subscription },
         } = supabase.auth.onAuthStateChange(async (_event, session) => {
+            console.log('Auth state changed:', _event, session?.user?.email);
             await handleUserStateChange(session?.user ?? null);
             setLoading(false);
         });
 
         return () => subscription.unsubscribe();
     }, [handleUserStateChange, persistToken]);
-
-    // Handle OAuth redirects on every page load
-    useEffect(() => {
-        if (typeof window === "undefined") return;
-        
-        const handleOAuthRedirect = async () => {
-            const hashParams = new URLSearchParams(window.location.hash.substring(1));
-            const accessToken = hashParams.get('access_token');
-            const refreshToken = hashParams.get('refresh_token');
-            
-            if (accessToken && refreshToken) {
-                console.log('OAuth redirect detected on page load, processing tokens...');
-                try {
-                    const { data, error } = await supabase.auth.setSession({
-                        access_token: accessToken,
-                        refresh_token: refreshToken
-                    });
-                    
-                    if (error) {
-                        console.error('Error setting session from OAuth:', error);
-                    } else {
-                        console.log('OAuth session set successfully:', data);
-                        // Clear the URL fragment
-                        window.history.replaceState({}, document.title, window.location.pathname);
-                    }
-                } catch (error) {
-                    console.error('Error processing OAuth tokens:', error);
-                }
-            }
-        };
-
-        handleOAuthRedirect();
-    }, []);
 
     const signOut = async () => {
         try {
@@ -194,7 +129,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             setUser(null);
         } catch (error) {
             console.error("Failed to sign out:", error);
-            throw error; // Re-throw to allow caller to handle
+            throw error;
         }
     };
 
