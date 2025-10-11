@@ -1,10 +1,9 @@
 export function getAuthErrorMessage(error: any): string {
     if (!error) return "Đã xảy ra lỗi hệ thống. Vui lòng thử lại sau.";
 
-    // Debug logging to help identify the exact error structure
-    console.log("Auth error details:", { 
-        error, 
-        message: error.message, 
+    console.log("Auth error details:", {
+        error,
+        message: error.message,
         msg: error.msg,
         code: error.code,
         error_code: error.error_code,
@@ -12,15 +11,32 @@ export function getAuthErrorMessage(error: any): string {
         status: error.status
     });
 
-    // Get error message from various possible properties
     const errorMessage = error.message || error.msg || error.toString() || "";
     const errorCode = error.code || error.error_code || error.status || "";
     const errorName = error.name || "";
 
+    // Handle OAuth specific errors
+    if (errorMessage.includes("provider is not enabled") ||
+        errorMessage.includes("Unsupported provider")) {
+        return "Google đăng nhập chưa được kích hoạt trong Supabase. Vui lòng liên hệ quản trị viên.";
+    }
+
+    if (errorCode === "access_denied" || errorMessage.includes("access_denied")) {
+        return "Bạn đã từ chối quyền truy cập. Vui lòng thử lại và cho phép quyền truy cập.";
+    }
+
+    if (errorCode === "exchange_failed") {
+        return "Lỗi khi xác thực với Google. Vui lòng thử lại.";
+    }
+
+    if (errorCode === "unexpected_failure") {
+        return "Lỗi xác thực không mong muốn. Vui lòng kiểm tra cấu hình Supabase và thử lại.";
+    }
+
     // Handle AuthApiError specifically
     if (errorName === "AuthApiError" || errorName.includes("AuthApiError")) {
         if (errorMessage.includes("Invalid login credentials") || errorMessage.includes("Invalid password")) {
-            return "Tài khoản của bạn chưa được tạo. Vui lòng đăng ký trước.";
+            return "Email hoặc mật khẩu không đúng. Vui lòng thử lại.";
         }
         if (errorMessage.includes("Email not confirmed")) {
             return "Vui lòng xác nhận email trước khi đăng nhập.";
@@ -42,10 +58,10 @@ export function getAuthErrorMessage(error: any): string {
         }
     }
 
-    // Handle specific error messages first (more specific)
-    if (errorMessage.includes("Invalid login credentials") || 
+    // Handle specific error messages
+    if (errorMessage.includes("Invalid login credentials") ||
         errorMessage.includes("Invalid password")) {
-        return "Tài khoản của bạn chưa được tạo. Vui lòng đăng ký trước.";
+        return "Email hoặc mật khẩu không đúng. Vui lòng thử lại.";
     }
 
     if (errorMessage.includes("Email not confirmed")) {
@@ -78,15 +94,11 @@ export function getAuthErrorMessage(error: any): string {
 
     // Handle specific error codes
     if (errorCode === "validation_failed") {
-        if (errorMessage.includes("provider is not enabled") || 
-            errorMessage.includes("Unsupported provider")) {
-            return "Google đăng nhập chưa được kích hoạt. Vui lòng sử dụng email và mật khẩu để đăng nhập.";
-        }
         return "Thông tin không hợp lệ. Vui lòng kiểm tra lại.";
     }
 
     if (errorCode === "invalid_credentials" || errorCode === "invalid_grant") {
-        return "Tài khoản của bạn chưa được tạo. Vui lòng đăng ký trước.";
+        return "Email hoặc mật khẩu không đúng. Vui lòng thử lại.";
     }
 
     if (errorCode === "email_not_confirmed") {
@@ -98,14 +110,9 @@ export function getAuthErrorMessage(error: any): string {
     }
 
     if (errorCode === "user_not_found") {
-        return "Tài khoản của bạn chưa được tạo. Vui lòng đăng ký trước.";
-    }
-
-    // Additional fallback for common Supabase errors
-    if (errorMessage === "Invalid login credentials") {
-        return "Tài khoản của bạn chưa được tạo. Vui lòng đăng ký trước.";
+        return "Tài khoản không tồn tại. Vui lòng đăng ký trước.";
     }
 
     // Default fallback
-    return "Đã xảy ra lỗi hệ thống. Vui lòng thử lại sau.";
+    return errorMessage || "Đã xảy ra lỗi hệ thống. Vui lòng thử lại sau.";
 }

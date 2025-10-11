@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
-import { LoaderIcon, LogIn, Mail, Lock, ArrowLeft, Shield, Zap, Globe, Eye, EyeOff } from "lucide-react";
+import { LoaderIcon, LogIn, Mail, Lock, ArrowLeft, Eye, EyeOff } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
@@ -14,38 +14,20 @@ import { cn } from "@/lib/utils";
 import TermsDrawer from "@/components/ui/terms-drawer";
 import { getAuthErrorMessage } from "@/lib/auth-utils";
 import AuthBranding from "@/components/auth/auth-branding";
-export default function SignInPage() {
+
+export default function SignUpPage() {
     const router = useRouter();
     const { user } = useAuth();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
     const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-    // Handle auth callback errors
-    useEffect(() => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const errorParam = urlParams.get('error');
-        const description = urlParams.get('description');
-
-        if (errorParam) {
-            console.log('Auth callback error:', errorParam, description);
-            if (errorParam === 'unexpected_failure') {
-                setError('Lỗi xác thực không mong muốn. Vui lòng kiểm tra cấu hình Supabase và thử lại.');
-            } else if (errorParam === 'access_denied') {
-                setError('Truy cập bị từ chối. Vui lòng thử lại.');
-            } else if (errorParam === 'exchange_failed') {
-                setError('Lỗi khi xác thực với Google. Vui lòng thử lại.');
-            } else {
-                setError(`Lỗi xác thực: ${description || errorParam}. Vui lòng thử lại.`);
-            }
-        }
-    }, []);
-
-    // Redirect to home when user is successfully authenticated
     useEffect(() => {
         if (user) {
             const timer = setTimeout(() => {
@@ -65,42 +47,41 @@ export default function SignInPage() {
             return;
         }
 
+        if (password.length < 6) {
+            setError("Mật khẩu cần tối thiểu 6 ký tự.");
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            setError("Mật khẩu nhập lại không khớp.");
+            return;
+        }
+
         setLoading(true);
 
         try {
-            const { error: signInError, data: signInData } = await supabase.auth.signInWithPassword({
+            const { error: signUpError, data } = await supabase.auth.signUp({
                 email,
                 password,
+                options: {
+                    emailRedirectTo: `${window.location.origin}/auth/callback`,
+                },
             });
 
-            if (signInError) {
-                if (signInError.message.includes("Invalid login credentials")) {
-                    setError(
-                        <>
-                            Email hoặc mật khẩu không đúng. Nếu chưa có tài khoản,{" "}
-                            <Link
-                                href="/sign-up"
-                                className="underline font-semibold text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300"
-                            >
-                                đăng ký tại đây
-                            </Link>
-                            .
-                        </> as any
-                    );
-                    return;
-                }
-                throw signInError;
+            if (signUpError) {
+                throw signUpError;
             }
 
-            if (!signInData?.user) {
+            // Check if user already exists
+            if (data.user?.identities?.length === 0) {
                 setError(
                     <>
-                        Tài khoản không tồn tại. Vui lòng{" "}
+                        Email này đã được đăng ký. Vui lòng{" "}
                         <Link
-                            href="/sign-up"
+                            href="/sign-in"
                             className="underline font-semibold text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300"
                         >
-                            đăng ký tại đây
+                            đăng nhập tại đây
                         </Link>
                         .
                     </> as any
@@ -108,11 +89,17 @@ export default function SignInPage() {
                 return;
             }
 
-            setSuccessMessage("Đăng nhập thành công.");
+            if (data.session) {
+                setSuccessMessage("Tạo tài khoản và đăng nhập thành công.");
+            } else {
+                setSuccessMessage("Đã tạo tài khoản. Vui lòng kiểm tra email để xác nhận.");
+            }
+
             setEmail("");
             setPassword("");
+            setConfirmPassword("");
         } catch (err) {
-            console.error("Sign in error:", err);
+            console.error("Sign up error:", err);
             setError(getAuthErrorMessage(err));
         } finally {
             setLoading(false);
@@ -135,10 +122,7 @@ export default function SignInPage() {
                 },
             });
 
-            if (error) {
-                console.error('Google sign in error:', error);
-                throw error;
-            }
+            if (error) throw error;
         } catch (err: any) {
             console.error('Google sign in failed:', err);
             setError(getAuthErrorMessage(err));
@@ -148,15 +132,11 @@ export default function SignInPage() {
 
     return (
         <div className="relative min-h-screen w-full flex overflow-hidden bg-background">
-            {/* Left Side - Branding (same as before) */}
             <AuthBranding />
-            {/* Right Side - Sign In Form */}
+            {/* Right Side - Sign Up Form */}
             <div className="w-full lg:w-1/2 xl:w-2/5 flex items-center justify-center p-6 sm:p-8 lg:p-12">
                 <div className="w-full max-w-md">
-                    <Link
-                        href="/"
-                        className="inline-flex lg:hidden items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group mb-8"
-                    >
+                    <Link href="/" className="inline-flex lg:hidden items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group mb-8">
                         <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                         <span>Quay lại</span>
                     </Link>
@@ -164,10 +144,10 @@ export default function SignInPage() {
                     <div className="space-y-8">
                         <div className="space-y-2">
                             <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
-                                Chào mừng trở lại
+                                Bắt đầu với E-Swap
                             </h1>
                             <p className="text-muted-foreground">
-                                Đăng nhập để quản lý và theo dõi việc đổi pin
+                                Tạo tài khoản để trải nghiệm đổi pin siêu tốc
                             </p>
                         </div>
 
@@ -186,7 +166,7 @@ export default function SignInPage() {
 
                         <form onSubmit={handleSubmit} className="space-y-5">
                             <div className="space-y-2">
-                                <Label htmlFor="email" className="text-sm font-medium">Email</Label>
+                                <Label htmlFor="email">Email</Label>
                                 <div className="relative group">
                                     <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground/50 group-focus-within:text-green-600 dark:group-focus-within:text-green-500 transition-colors pointer-events-none" />
                                     <Input
@@ -203,14 +183,14 @@ export default function SignInPage() {
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="password" className="text-sm font-medium">Mật khẩu</Label>
+                                <Label htmlFor="password">Mật khẩu</Label>
                                 <div className="relative group">
                                     <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground/50 group-focus-within:text-green-600 dark:group-focus-within:text-green-500 transition-colors pointer-events-none" />
                                     <Input
                                         id="password"
                                         type={showPassword ? "text" : "password"}
                                         placeholder="••••••••"
-                                        autoComplete="current-password"
+                                        autoComplete="new-password"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                         className="pl-10 pr-10 h-12 text-base bg-background border-2 focus:border-green-600 dark:focus:border-green-500 transition-colors"
@@ -226,6 +206,43 @@ export default function SignInPage() {
                                 </div>
                             </div>
 
+                            <div className="space-y-2">
+                                <Label htmlFor="confirm-password">Xác nhận mật khẩu</Label>
+                                <div className="relative group">
+                                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground/50 group-focus-within:text-green-600 dark:group-focus-within:text-green-500 transition-colors pointer-events-none" />
+                                    <Input
+                                        id="confirm-password"
+                                        type={showConfirmPassword ? "text" : "password"}
+                                        placeholder="••••••••"
+                                        autoComplete="new-password"
+                                        value={confirmPassword}
+                                        onChange={(e) => setConfirmPassword(e.target.value)}
+                                        className="pl-10 pr-10 h-12 text-base bg-background border-2 focus:border-green-600 dark:focus:border-green-500 transition-colors"
+                                        required
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                        className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground/50 hover:text-foreground transition-colors"
+                                    >
+                                        {showConfirmPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div className="text-center pt-2">
+                                <p className="text-sm text-muted-foreground leading-relaxed">
+                                    Bằng việc xác nhận bạn đã đồng ý với{" "}
+                                    <TermsDrawer
+                                        trigger={
+                                            <span className="text-green-600 dark:text-green-500 hover:underline font-medium cursor-pointer">
+                                                Điều khoản sử dụng
+                                            </span>
+                                        }
+                                    />
+                                </p>
+                            </div>
+
                             <Button
                                 type="submit"
                                 size="lg"
@@ -236,7 +253,7 @@ export default function SignInPage() {
                                     <LoaderIcon className="w-5 h-5 animate-spin" />
                                 ) : (
                                     <>
-                                        Đăng nhập ngay
+                                        Tạo tài khoản
                                         <LogIn className="ml-2 h-5 w-5" />
                                     </>
                                 )}
@@ -256,7 +273,6 @@ export default function SignInPage() {
                                 onClick={handleGoogleSignIn}
                                 disabled={loading}
                             >
-                                {/* Google SVG */}
                                 <svg className="w-5 h-5 mr-3" viewBox="0 0 256 262">
                                     <path fill="#4285F4" d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622l38.755 30.023l2.685.268c24.659-22.774 38.875-56.282 38.875-96.027" />
                                     <path fill="#34A853" d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055c-34.523 0-63.824-22.773-74.269-54.25l-1.531.13l-40.298 31.187l-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1" />
@@ -268,13 +284,13 @@ export default function SignInPage() {
                         </form>
 
                         <div className="text-center text-sm pt-4">
-                            <span className="text-muted-foreground">Chưa có tài khoản?</span>
+                            <span className="text-muted-foreground">Đã có tài khoản?</span>
                             {" "}
                             <Link
-                                href="/sign-up"
+                                href="/sign-in"
                                 className="text-green-600 dark:text-green-500 font-semibold hover:underline transition-colors"
                             >
-                                Đăng ký ngay
+                                Đăng nhập
                             </Link>
                         </div>
                     </div>
@@ -283,4 +299,3 @@ export default function SignInPage() {
         </div>
     );
 }
-

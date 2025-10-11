@@ -289,7 +289,6 @@ export const MobileNavToggle = ({
 };
 
 export const NavbarLogo = () => {
-    const logoSrc = "/assets/icons/logo-no-bg.png";
 
     return (
         <Link

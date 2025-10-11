@@ -214,14 +214,14 @@ export default function SmoothDrawer({
                                 <motion.div variants={itemVariants as any}>
                                     <div className="p-1.5 rounded-xl bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900 shadow-inner">
                                         <Image
-                                            src="/assets/icons/logo-no-bg.png"
+                                            src=""
                                             alt="Logo"
                                             width={32}
                                             height={32}
                                             className="hidden dark:block"
                                         />
                                         <Image
-                                            src="/assets/icons/logo-no-bg.png"
+                                            src=""
                                             alt="Logo"
                                             width={32}
                                             height={32}
