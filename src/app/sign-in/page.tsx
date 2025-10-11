@@ -11,7 +11,6 @@ import { Label } from "@/components/ui/label";
 import { useAuth } from "@/lib/auth-context";
 import { supabase } from "@/lib/supabaseClients";
 import { cn } from "@/lib/utils";
-import TermsDrawer from "@/components/ui/terms-drawer";
 import { getAuthErrorMessage } from "@/lib/auth-utils";
 import AuthBranding from "@/components/auth/auth-branding";
 export default function SignInPage() {

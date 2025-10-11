@@ -10,7 +10,7 @@ import {
     DrawerHeader,
     DrawerTitle,
     DrawerTrigger,
-} from "@/components/ui/subcription/drawer";
+} from "@/components/subcription/drawer";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";

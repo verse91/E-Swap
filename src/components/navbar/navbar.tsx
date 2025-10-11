@@ -18,7 +18,7 @@ import {
     MobileNavHeader,
     MobileNavToggle,
     MobileNavMenu,
-} from "@/components/ui/navbar/resizable-navbar";
+} from "@/components/navbar/resizable-navbar";
 import { useState, useRef } from "react";
 import Image from "next/image";
 import { User } from "lucide-react";

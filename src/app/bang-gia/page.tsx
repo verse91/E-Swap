@@ -2,7 +2,7 @@
 
 import Footer from "@/components/footer";
 import PricingSection from "@/components/PricingSection";
-import { NavbarMain } from "@/components/ui/navbar/navbar";
+import { NavbarMain } from "@/components/navbar/navbar";
 
 export default function PricingPage() {
     return (

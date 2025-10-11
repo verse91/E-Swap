@@ -2,7 +2,7 @@
 
 import Footer from '@/components/footer';
 import NearestStationsDemo from '@/components/NearestStationsDemo';
-import { NavbarMain } from '@/components/ui/navbar/navbar';
+import { NavbarMain } from '@/components/navbar/navbar';
 
 export default function FeaturesPage() {
     return (

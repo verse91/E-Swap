@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { InfiniteSlider } from '@/components/ui/homepage/infinite-slider';
-import { ProgressiveBlur } from '@/components/ui/homepage/progressive-blur';
+import { InfiniteSlider } from '@/components/homepage/infinite-slider';
+import { ProgressiveBlur } from '@/components/homepage/progressive-blur';
 const HeroSection = () => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
