@@ -9,7 +9,7 @@ import {
     DrawerHeader,
     DrawerTitle,
     DrawerTrigger,
-} from "@/components/ui/subcription/drawer";
+} from "@/components/subcription/drawer";
 import { motion } from "motion/react";
 import { X } from "lucide-react";
 
