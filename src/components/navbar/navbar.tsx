@@ -45,9 +45,10 @@ function NavbarMain() {
             link: "/bang-gia",
         },
         {
-            name: "Liên hệ",
-            link: "/contact",
+            name: "Giới thiệu",
+            link: "/about",
         },
+
     ];
 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
