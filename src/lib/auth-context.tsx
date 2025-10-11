@@ -9,7 +9,6 @@ interface AuthContextType {
     loading: boolean;
     loginToken: string | null;
     signOut: () => Promise<void>;
-    getUserCredits: (userId: string) => Promise<number>;
     refreshLoginToken: () => Promise<void>;
 }
 
@@ -132,33 +131,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
     };
 
-    const getUserCredits = async (userId: string): Promise<number> => {
-        if (!userId?.trim()) {
-            console.error("Invalid userId provided");
-            return 0;
-        }
-        try {
-            const headers: Record<string, string> = {};
-            if (loginToken) {
-                headers.Authorization = `Bearer ${loginToken}`;
-            }
-
-            const response = await fetch(`/api/v1/users/${userId}/credits`, {
-                headers,
-            });
-
-            if (!response.ok) {
-                console.error(`Failed to fetch user credits: ${response.status} ${response.statusText}`);
-                return 0;
-            }
-
-            const data = await response.json();
-            return typeof data.credits === 'number' ? data.credits : (data.data?.credits || 0);
-        } catch (error) {
-            console.error("Error fetching user credits:", error);
-            return 0;
-        }
-    };
 
     const refreshLoginToken = useCallback(async () => {
         if (!user) {
@@ -171,7 +143,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     return (
         <AuthContext.Provider
-            value={{ user, loading, loginToken, signOut, getUserCredits, refreshLoginToken }}
+            value={{ user, loading, loginToken, signOut, refreshLoginToken }}
         >
             {children}
         </AuthContext.Provider>
