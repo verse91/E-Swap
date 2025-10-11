@@ -53,7 +53,6 @@ export default function ServiceSignupForm() {
             timestamp: new Date().toISOString(),
         };
 
-        console.log("Dữ liệu đăng ký:", data);
 
         setModal({
             open: true,

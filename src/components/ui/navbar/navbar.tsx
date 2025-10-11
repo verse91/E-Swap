@@ -21,14 +21,11 @@ import {
 } from "@/components/ui/navbar/resizable-navbar";
 import { useState, useRef } from "react";
 import Image from "next/image";
+import { User } from "lucide-react";
 
 export function NavbarMain() {
     const { user, signOut, loading } = useAuth();
-    
-    // Debug user data
-    console.log('User data:', user);
-    console.log('User metadata:', user?.user_metadata);
-    console.log('User picture:', user?.user_metadata?.picture);
+
 
     const handleSignOut = async () => {
         try {
@@ -88,20 +85,23 @@ export function NavbarMain() {
                                             variant="secondary"
                                             className="rounded-full p-0 w-9 h-9 flex items-center justify-center"
                                         >
-                                            <Image
-                                                src={
-                                                    user.user_metadata?.picture ||
-                                                    "/assets/icons/logo-no-bg.png"
-                                                }
-                                                alt="User Avatar"
-                                                width={35}
-                                                height={35}
-                                                className="rounded-full"
-                                                onError={(e) => {
-                                                    console.log('Avatar image failed to load:', e);
-                                                    e.currentTarget.src = "/assets/icons/logo-no-bg.png";
-                                                }}
-                                            />
+                                            {user.user_metadata?.picture ? (
+                                                <Image
+                                                    src={user.user_metadata.picture}
+                                                    alt="User Avatar"
+                                                    width={35}
+                                                    height={35}
+                                                    className="rounded-full"
+                                                    onError={(e) => {
+                                                        console.log('Avatar image failed to load, showing fallback icon');
+                                                        e.currentTarget.style.display = 'none';
+                                                        e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                                                    }}
+                                                />
+                                            ) : null}
+                                            <div className={`w-9 h-9 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center ${user.user_metadata?.picture ? 'hidden' : ''}`}>
+                                                <User className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+                                            </div>
                                         </NavbarButton>
                                     </DropdownMenuTrigger>
                                     <DropdownMenuContent
@@ -164,20 +164,23 @@ export function NavbarMain() {
                             ) : user ? (
                                 <div className="flex flex-col gap-2">
                                     <div className="flex items-center gap-3 p-2">
-                                        <Image
-                                            src={
-                                                user.user_metadata?.picture ||
-                                                "/assets/icons/logo-no-bg.png"
-                                            }
-                                            alt="User Avatar"
-                                            width={35}
-                                            height={35}
-                                            className="rounded-full border shadow"
-                                            onError={(e) => {
-                                                console.log('Mobile avatar image failed to load:', e);
-                                                e.currentTarget.src = "/assets/icons/logo-no-bg.png";
-                                            }}
-                                        />
+                                        {user.user_metadata?.picture ? (
+                                            <Image
+                                                src={user.user_metadata.picture}
+                                                alt="User Avatar"
+                                                width={35}
+                                                height={35}
+                                                className="rounded-full border shadow"
+                                                onError={(e) => {
+                                                    console.log('Mobile avatar image failed to load, showing fallback icon');
+                                                    e.currentTarget.style.display = 'none';
+                                                    e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                                                }}
+                                            />
+                                        ) : null}
+                                        <div className={`w-9 h-9 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center border shadow ${user.user_metadata?.picture ? 'hidden' : ''}`}>
+                                            <User className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+                                        </div>
                                         <div className="flex flex-col">
                                             <span className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
                                                 {user.user_metadata?.name || "User"}

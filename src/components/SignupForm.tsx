@@ -39,7 +39,7 @@ export default function SignupForm() {
         setIsSubmitting(true);
 
         const { fullName, phoneNumber, customerType, serviceType, area, selectedPackage } = formData;
-        
+
         if (!fullName || !phoneNumber || !customerType || !serviceType || !area) {
             setModal({
                 open: true,
@@ -58,14 +58,13 @@ export default function SignupForm() {
             const data = {
                 ...formData,
                 customerType: formData.customerType === "individual" ? "Cá nhân" : "Doanh nghiệp",
-                serviceType: formData.serviceType === "selfcharge" ? "Tự sạc" : 
-                           formData.serviceType === "battery" ? "Gói pin" : "Thuê xe",
-                area: formData.area === "hanoi" ? "Hà Nội" : 
-                      formData.area === "hcmc" ? "Hồ Chí Minh" : "Khác",
+                serviceType: formData.serviceType === "selfcharge" ? "Tự sạc" :
+                    formData.serviceType === "battery" ? "Gói pin" : "Thuê xe",
+                area: formData.area === "hanoi" ? "Hà Nội" :
+                    formData.area === "hcmc" ? "Hồ Chí Minh" : "Khác",
                 timestamp: new Date().toISOString(),
             };
 
-            console.log("Dữ liệu đăng ký:", data);
 
             setModal({
                 open: true,
@@ -335,9 +334,8 @@ export default function SignupForm() {
                                     <XCircle className="w-12 h-12 text-red-500" />
                                 )}
                             </div>
-                            <h3 className={`text-xl font-bold mb-3 ${
-                                modal.success ? "text-green-600" : "text-red-600"
-                            }`}>
+                            <h3 className={`text-xl font-bold mb-3 ${modal.success ? "text-green-600" : "text-red-600"
+                                }`}>
                                 {modal.title}
                             </h3>
                             <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
