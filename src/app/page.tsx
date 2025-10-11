@@ -1,12 +1,20 @@
 'use client'
-import HeroSection from '@/components/ui/homepage/herosection'
-import { NavbarMain } from '@/components/ui/navbar/navbar';
+import HeroSection from '@/components/homepage/herosection'
+import GallerySkeleton from '@/components/homepage/gallery-skeleton'
+import Testimonials from '@/components/homepage/testimonials-data'
+import { NavbarMain } from '@/components/navbar/navbar';
+import Footer from '@/components/footer';
 const HomePage = () => {
     return (
         <div className="relative min-h-screen w-full">
             <NavbarMain />
 
             <HeroSection />
+
+            <GallerySkeleton />
+
+            <Testimonials />
+            <Footer />
         </div>
     )
 }
