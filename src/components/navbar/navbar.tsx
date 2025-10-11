@@ -23,7 +23,7 @@ import { useState, useRef } from "react";
 import Image from "next/image";
 import { User } from "lucide-react";
 
-export function NavbarMain() {
+function NavbarMain() {
     const { user, signOut, loading } = useAuth();
 
 
