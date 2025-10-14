@@ -193,8 +193,7 @@ export default function AboutPage() {
                     </div>
                     <h3 className="text-xl font-bold text-center mb-2">{member.name}</h3>
                     <p className="text-sm text-emerald-600 dark:text-emerald-400 text-center font-medium mb-2">{member.role}</p>
-                    <p className="text-xs text-muted-foreground text-center mb-3">{member.school}</p>
-                    <p className="text-sm text-muted-foreground text-center leading-relaxed">{member.bio}</p>
+                    <p className="text-xs text-muted-foreground text-center">{member.school}</p>
                   </div>
                 </div>
               ))}

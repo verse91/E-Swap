@@ -15,32 +15,27 @@ export const TEAM_MEMBERS: TeamMember[] = [
   {
     name: "Lê Chí Vĩ",
     role: "Team Leader & Project Manager",
-    school: "Đại học Văn Hiến",
-    bio: "Chịu trách nhiệm điều phối dự án và quản lý toàn bộ quy trình phát triển"
+    school: "Đại học Văn Hiến"
   },
   {
     name: "Dương Thế Tài",
     role: "Business Analyst & Strategy",
-    school: "Đại học Kinh tế TP.HCM",
-    bio: "Phân tích thị trường và phát triển chiến lược kinh doanh"
+    school: "Đại học Kinh tế TP.HCM"
   },
   {
     name: "Nguyễn Trọng Hoàng",
     role: "Backend Developer & System Architect",
-    school: "UIT - ĐHQG TP.HCM",
-    bio: "Phát triển hệ thống backend và thiết kế kiến trúc hệ thống"
+    school: "UIT - ĐHQG TP.HCM"
   },
   {
     name: "Phùng Minh Khoa",
     role: "Hardware Engineer & IoT Specialist",
-    school: "BKU - ĐHQG TP.HCM",
-    bio: "Thiết kế phần cứng trạm đổi pin và tích hợp IoT"
+    school: "BKU - ĐHQG TP.HCM"
   },
   {
     name: "Nguyễn Tấn Thành",
     role: "Frontend Developer & UI/UX Designer",
-    school: "Đại học Văn Hiến",
-    bio: "Phát triển giao diện người dùng và thiết kế trải nghiệm"
+    school: "Đại học Văn Hiến"
   }
 ];
 
