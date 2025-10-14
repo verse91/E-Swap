@@ -8,7 +8,7 @@ const thirdColumn = testimonials.slice(6, 9)
 
 const Testimonials = () => {
     return (
-        <section className="bg-gradient-to-b from-green-50 to-green-100 py-16 relative">
+        <section className="bg-gradient-to-b from-green-50 to-green-100 relative">
             <div className="container z-10 mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 10 }}
@@ -18,11 +18,11 @@ const Testimonials = () => {
                     className="flex flex-col items-center justify-center max-w-[540px] mx-auto"
                 >
 
-                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tighter mt-5">
+                    <p className="text-4xl sm:text-5xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tighter mt-5">
                         Đánh giá của khách hàng
-                    </h2>
+                    </p>
 
-                    <p className="text-center mt-5 opacity-75">
+                    <p className="text-center mt-5 opacity-75 max-w-[340px] mx-auto sm:max-w-[480px] md:max-w-[640px] lg:max-w-[800px]">
                         Các khách hàng đã thực hiện các giao dịch trên E-Swap và đã có những đánh giá tích cực
                     </p>
                 </motion.div>

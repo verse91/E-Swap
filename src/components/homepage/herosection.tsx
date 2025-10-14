@@ -110,7 +110,7 @@ const HeroSection = () => {
                 {/**/}
                 {/**/}
 
-                <section className="overflow-hidden min-h-screen flex items-center">
+                <section className="overflow-hidden min-h-screen flex items-center pb-24 md:pb-20">
                     <div className="flex flex-col lg:flex-row lg:items-stretch w-full">
                         <div className="flex items-center justify-center w-full lg:order-2 lg:w-7/12">
                             <div className="h-full px-4 py-16 sm:px-6 lg:px-24 2xl:px-32">
@@ -165,12 +165,12 @@ const HeroSection = () => {
                             </div>
                         </div>
 
-                        <div className="relative w-full overflow-hidden lg:w-5/12 lg:order-1 flex items-center justify-center">
+                        <div className="relative w-full overflow-hidden lg:w-5/12 lg:order-1 flex items-center justify-center mb-8 lg:mb-0">
                             <div className={`transition-all duration-600 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`} style={{ transitionDelay: '200ms' }}>
-                                <div className="relative">
+                                <div className="relative max-w-sm lg:max-w-none">
                                     <Image
                                         className="w-full animate-bounce"
-                                        src="/assets/model.png"
+                                        src="/assets/modelcompressed.png"
                                         alt="Electric motorbike mockup"
                                         width={600}
                                         height={900}
@@ -190,26 +190,26 @@ const HeroSection = () => {
                     </div>
                 </section>
 
-                <div className="absolute bottom-10 left-0 right-0 py-8">
-                    <div className="group relative m-auto max-w-6xl px-6">
+                <div className="absolute bottom-2 md:bottom-10 left-0 right-0 py-2 md:py-8">
+                    <div className="group relative m-auto max-w-6xl px-4 md:px-6">
 
                         <div className="flex flex-col items-center md:flex-row">
                             <motion.div
-                                className="md:max-w-44 md:pr-6"
+                                className="md:max-w-44 md:pr-6 mb-2 md:mb-0"
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
                             >
-                                <p className="text-end text-sm text-black">Lựa chọn hàng đầu của hàng loạt doanh nghiệp</p>
+                                <p className="text-center md:text-end text-xs md:text-sm text-black">Lựa chọn hàng đầu của hàng loạt doanh nghiệp</p>
                             </motion.div>
-                            <div className="relative py-6 md:w-[calc(100%-11rem)]">
+                            <div className="relative py-2 md:py-6 w-full md:w-[calc(100%-11rem)]">
                                 <InfiniteSlider
-                                    durationOnHover={30}
-                                    duration={60}
-                                    gap={80}>
+                                    durationOnHover={7}
+                                    duration={15}
+                                    gap={40}>
                                     <div className="flex">
                                         <img
-                                            className="mx-auto h-10 w-fit dark:invert"
+                                            className="mx-auto h-6 md:h-10 w-fit dark:invert"
                                             src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Shopee.svg"
                                             alt="Shopee Logo"
                                             height="264"
@@ -219,7 +219,7 @@ const HeroSection = () => {
 
                                     <div className="flex">
                                         <img
-                                            className="mx-auto h-10 w-fit dark:invert"
+                                            className="mx-auto h-6 md:h-10 w-fit dark:invert"
                                             src="https://upload.wikimedia.org/wikipedia/en/1/12/Grab_%28application%29_logo.svg"
                                             alt="Grab Logo"
                                             height="16"
@@ -228,7 +228,7 @@ const HeroSection = () => {
                                     </div>
                                     <div className="flex">
                                         <img
-                                            className="mx-auto h-10 w-fit dark:invert"
+                                            className="mx-auto h-6 md:h-10 w-fit dark:invert"
                                             src="https://upload.wikimedia.org/wikipedia/commons/8/80/Viettel_Post_logo.svg"
                                             alt="Viettel Post Logo"
                                             height="16"
@@ -237,7 +237,7 @@ const HeroSection = () => {
                                     </div>
                                     <div className="flex">
                                         <img
-                                            className="mx-auto h-10 w-fit dark:invert"
+                                            className="mx-auto h-6 md:h-10 w-fit dark:invert"
                                             src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Lazada_%282019%29.svg"
                                             alt="Lazada Logo"
                                             height="20"
@@ -246,7 +246,7 @@ const HeroSection = () => {
                                     </div>
                                     <div className="flex">
                                         <img
-                                            className="mx-auto h-8 w-fit dark:invert"
+                                            className="mx-auto h-5 md:h-8 w-fit dark:invert"
                                             src="https://cdn.haitrieu.com/wp-content/uploads/2023/10/Logo-Cong-ty-Quoc-te-Son-Ha.png"
                                             alt="Son Ha Logo"
                                             height="20"
@@ -255,7 +255,7 @@ const HeroSection = () => {
                                     </div>
                                     <div className="flex">
                                         <img
-                                            className="mx-auto h-10 w-fit dark:invert"
+                                            className="mx-auto h-6 md:h-10 w-fit dark:invert"
                                             src="https://upload.wikimedia.org/wikipedia/commons/2/23/%E4%BD%90%E5%B7%9D%E6%80%A5%E4%BE%BF%E3%83%AD%E3%82%B4.svg"
                                             alt="Sagawa Logo"
                                             height="16"

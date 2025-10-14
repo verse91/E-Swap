@@ -58,7 +58,7 @@ const GallerySkeleton = () => {
     };
 
     return (
-        <section className="py-16 bg-gradient-to-t from-green-50 via-green-100 to-green-50">
+        <section className="py-1 bg-gradient-to-t from-green-50 via-green-100 to-green-50">
             <div className="container mx-auto px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -112,19 +112,37 @@ const GallerySkeleton = () => {
                     ))}
                 </motion.div>
 
+                {/* Banner Image */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
                     viewport={{ once: true }}
+                    className="mt-12 -mx-6"
+                >
+                    <Image
+                        src="/assets/banner.webp"
+                        alt="E-Swap Banner"
+                        width={1920}
+                        height={1080}
+                        className="w-full h-auto md:rounded-2xl"
+                        priority
+                    />
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 1.0, ease: "easeOut" }}
+                    viewport={{ once: true }}
                     className="text-center mt-12"
                 >
-                    <button className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 cursor-pointer">
-                        Tìm hiểu thêm
-                        <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                    </button>
+                    {/* <button className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 cursor-pointer"> */}
+                    {/*     Tìm hiểu thêm */}
+                    {/*     <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"> */}
+                    {/*         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /> */}
+                    {/*     </svg> */}
+                    {/* </button> */}
                 </motion.div>
             </div>
         </section>
