@@ -190,7 +190,7 @@ export default function RouteDemo({
                 }
                 
                 // If main tiles fail, try fallback
-                tileLayer.on('tileerror', (e) => {
+                tileLayer.on('tileerror', (e: any) => {
                     console.log('Main tiles error:', e);
                     if (map.hasLayer(tileLayer)) {
                         map.removeLayer(tileLayer);
