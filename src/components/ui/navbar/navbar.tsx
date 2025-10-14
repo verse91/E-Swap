@@ -41,15 +41,19 @@ export function NavbarMain() {
 
   const navItems = [
     {
-      name: "Features",
+      name: "Giới thiệu",
+      link: "/about",
+    },
+    {
+      name: "Tính năng",
       link: "/features",
     },
     {
-      name: "Pricing",
+      name: "Bảng giá",
       link: "/pricing",
     },
     {
-      name: "Contact",
+      name: "Liên hệ",
       link: "/contact",
     },
   ];
