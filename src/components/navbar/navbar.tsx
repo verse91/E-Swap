@@ -106,7 +106,7 @@ function NavbarMain() {
                                         </NavbarButton>
                                     </DropdownMenuTrigger>
                                     <DropdownMenuContent
-                                        className="w-56 z-[100]"
+                                        className="w-56 z-[100] -translate-x-44"
                                         align="start"
                                         sideOffset={8}
                                     >
