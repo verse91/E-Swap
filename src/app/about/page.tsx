@@ -30,21 +30,27 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Story Section */}
+      {/* Giới thiệu Section */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <div className="prose prose-lg dark:prose-invert max-w-none">
+            <h1 className="text-3xl md:text-4xl font-bold mb-8">Khi cam kết Net Zero 2050 gặp thực tế đô thị</h1>
+            
+            <div className="prose prose-lg dark:prose-invert max-w-none space-y-6">
               <p className="text-lg leading-relaxed text-muted-foreground">
-                Dự án <strong>E-Swap</strong> được khởi xướng vào năm {COMPANY_INFO.founded} bởi một nhóm sinh viên đam mê công nghệ xanh từ các trường UIT, BKU, UEH, Đại học Văn Hiến thuộc ĐHQG TP.HCM. Với khát vọng giải quyết bài toán nan giải của giao thông điện tại Việt Nam, chúng tôi đã nghiên cứu và phát triển một Mô hình <strong>Trung tâm Năng lượng Xanh 2-trong-1</strong> hoàn toàn mới.
+                Việt Nam cam kết tương lai không phát thải vào năm 2050. Nhưng với hơn 77 triệu xe máy trên đường, câu hỏi không phải là "liệu chúng ta có thể?" mà là "làm thế nào để chuyển đổi không bỏ ai lại phía sau?". Giao thông xanh không thể chỉ là giấc mơ của những người có đủ thời gian chờ 8 tiếng để sạc pin, hay đủ tiền để chấp nhận bị ràng buộc bởi một hệ sinh thái đóng kín. Nó phải là giải pháp dành cho tất cả, từ người giao hàng chạy 100km mỗi ngày đến sinh viên lo lắng về quãng đường còn lại trên đồng hồ pin.
               </p>
 
-              <p className="text-lg leading-relaxed text-muted-foreground mt-6">
-                Dự án được dẫn dắt bởi đội ngũ sáng lập gồm {TEAM_MEMBERS[0].name}, {TEAM_MEMBERS[1].name}, {TEAM_MEMBERS[2].name}, {TEAM_MEMBERS[3].name}, và {TEAM_MEMBERS[4].name}.
+              <h1 className="text-3xl md:text-4xl font-bold mt-12 mb-8">Xanh thực sự, hay chỉ chuyển ô nhiễm sang nơi khác?</h1>
+
+              <p className="text-lg leading-relaxed text-muted-foreground">
+                68% người dùng xe điện đang sống với nỗi lo hết pin (range anxiety). 75% người đi xe xăng từ chối chuyển đổi vì thời gian sạc quá lâu. Nhưng đây chưa phải vấn đề lớn nhất. Sự thật đằng sau "làn sóng xanh" là phần lớn xe điện vẫn sạc bằng điện từ than đá. Chúng ta chỉ đang di chuyển khói độc từ ống xả xe máy sang ống khói nhà máy điện. Đây không phải là tương lai mà thế hệ tiếp theo xứng đáng có được.
               </p>
 
-              <p className="text-lg leading-relaxed text-muted-foreground mt-6">
-                Chúng tôi nhận thấy hai vấn đề lớn của thị trường xe điện hiện nay: (1) Nguồn phát thải chỉ được "di dời" khi sạc pin bằng điện lưới từ nhiên liệu hóa thạch, và (2) Thị trường bị phân mảnh bởi các hệ sinh thái khép kín. <strong>E-Swap</strong> ra đời để phá vỡ những rào cản đó thông qua hạ tầng năng lượng mở, sử dụng 100% năng lượng tái tạo từ mặt trời.
+              <h1 className="text-3xl md:text-4xl font-bold mt-12 mb-8"><strong>E-Swap</strong>: Khi năng lượng mặt trời gặp công nghệ đổi pin</h1>
+
+              <p className="text-lg leading-relaxed text-muted-foreground">
+                Giải pháp này không chỉ dành cho những người tiên phong, mà cho tất cả những ai đang di chuyển mỗi ngày. <strong>E-Swap</strong> là trạm đổi pin đầu tiên vận hành 100% bằng năng lượng mặt trời. Không phát thải từ đầu đến cuối, thực sự xanh từ "giếng dầu tới bánh xe". Đổi pin dưới 2 phút, không chờ đợi. Nền tảng mở cho mọi hãng xe, không vendor lock-in. Đây là cách chúng ta giữ lời hứa Net Zero 2050, một lần đổi pin một.
               </p>
             </div>
           </div>
