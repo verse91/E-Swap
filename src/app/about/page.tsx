@@ -47,10 +47,10 @@ export default function AboutPage() {
                 68% người dùng xe điện đang sống với nỗi lo hết pin (range anxiety). 75% người đi xe xăng từ chối chuyển đổi vì thời gian sạc quá lâu. Nhưng đây chưa phải vấn đề lớn nhất. Sự thật đằng sau "làn sóng xanh" là phần lớn xe điện vẫn sạc bằng điện từ than đá. Chúng ta chỉ đang di chuyển khói độc từ ống xả xe máy sang ống khói nhà máy điện. Đây không phải là tương lai mà thế hệ tiếp theo xứng đáng có được.
               </p>
 
-              <h1 className="text-3xl md:text-4xl font-bold mt-12 mb-8"><strong>E-Swap</strong>: Khi năng lượng mặt trời gặp công nghệ đổi pin</h1>
+              <h1 className="text-3xl md:text-4xl font-bold mt-12 mb-8">E-Swap: Khi năng lượng mặt trời gặp công nghệ đổi pin</h1>
 
               <p className="text-lg leading-relaxed text-muted-foreground">
-                Giải pháp này không chỉ dành cho những người tiên phong, mà cho tất cả những ai đang di chuyển mỗi ngày. <strong>E-Swap</strong> là trạm đổi pin đầu tiên vận hành 100% bằng năng lượng mặt trời. Không phát thải từ đầu đến cuối, thực sự xanh từ "giếng dầu tới bánh xe". Đổi pin dưới 2 phút, không chờ đợi. Nền tảng mở cho mọi hãng xe, không vendor lock-in. Đây là cách chúng ta giữ lời hứa Net Zero 2050, một lần đổi pin một.
+                Giải pháp này không chỉ dành cho những người tiên phong, mà cho tất cả những ai đang di chuyển mỗi ngày. E-Swap là trạm đổi pin đầu tiên vận hành 100% bằng năng lượng mặt trời. Không phát thải từ đầu đến cuối, thực sự xanh từ "giếng dầu tới bánh xe". Đổi pin dưới 2 phút, không chờ đợi. Nền tảng mở cho mọi hãng xe, không vendor lock-in. Đây là cách chúng ta giữ lời hứa Net Zero 2050, một lần đổi pin một.
               </p>
             </div>
           </div>
