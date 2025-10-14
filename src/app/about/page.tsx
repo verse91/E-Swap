@@ -36,15 +36,15 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto">
             <div className="prose prose-lg dark:prose-invert max-w-none">
               <p className="text-lg leading-relaxed text-muted-foreground">
-                Dự án <strong>E-Swap</strong> được khởi xướng vào năm {COMPANY_INFO.founded} bởi một nhóm sinh viên đam mê công nghệ xanh từ các trường <strong>UIT, BKU, UEH</strong> thuộc ĐHQG TP.HCM. Với khát vọng giải quyết bài toán nan giải của giao thông điện tại Việt Nam, chúng tôi đã nghiên cứu và phát triển một <strong>Mô hình Trung tâm Năng lượng Xanh 2-trong-1</strong> hoàn toàn mới.
+                Dự án <strong>E-Swap</strong> được khởi xướng vào năm {COMPANY_INFO.founded} bởi một nhóm sinh viên đam mê công nghệ xanh từ các trường UIT, BKU, UEH, Đại học Văn Hiến thuộc ĐHQG TP.HCM. Với khát vọng giải quyết bài toán nan giải của giao thông điện tại Việt Nam, chúng tôi đã nghiên cứu và phát triển một Mô hình <strong>Trung tâm Năng lượng Xanh 2-trong-1</strong> hoàn toàn mới.
               </p>
 
               <p className="text-lg leading-relaxed text-muted-foreground mt-6">
-                Dự án được dẫn dắt bởi đội ngũ sáng lập gồm <strong>{TEAM_MEMBERS[0].name}</strong> ({TEAM_MEMBERS[0].role}), <strong>{TEAM_MEMBERS[1].name}</strong> ({TEAM_MEMBERS[1].role}), <strong>{TEAM_MEMBERS[2].name}</strong> ({TEAM_MEMBERS[2].role}), <strong>{TEAM_MEMBERS[3].name}</strong> ({TEAM_MEMBERS[3].role}), và <strong>{TEAM_MEMBERS[4].name}</strong> ({TEAM_MEMBERS[4].role}).
+                Dự án được dẫn dắt bởi đội ngũ sáng lập gồm {TEAM_MEMBERS[0].name}, {TEAM_MEMBERS[1].name}, {TEAM_MEMBERS[2].name}, {TEAM_MEMBERS[3].name}, và {TEAM_MEMBERS[4].name}.
               </p>
 
               <p className="text-lg leading-relaxed text-muted-foreground mt-6">
-                Chúng tôi nhận thấy hai vấn đề lớn của thị trường xe điện hiện nay: <strong>(1)</strong> Nguồn phát thải chỉ được "di dời" khi sạc pin bằng điện lưới từ nhiên liệu hóa thạch, và <strong>(2)</strong> Thị trường bị phân mảnh bởi các hệ sinh thái khép kín. E-Swap ra đời để phá vỡ những rào cản đó thông qua hạ tầng năng lượng mở, sử dụng 100% năng lượng tái tạo từ mặt trời.
+                Chúng tôi nhận thấy hai vấn đề lớn của thị trường xe điện hiện nay: (1) Nguồn phát thải chỉ được "di dời" khi sạc pin bằng điện lưới từ nhiên liệu hóa thạch, và (2) Thị trường bị phân mảnh bởi các hệ sinh thái khép kín. <strong>E-Swap</strong> ra đời để phá vỡ những rào cản đó thông qua hạ tầng năng lượng mở, sử dụng 100% năng lượng tái tạo từ mặt trời.
               </p>
             </div>
           </div>
