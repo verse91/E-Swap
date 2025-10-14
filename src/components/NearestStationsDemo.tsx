@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { MapPin, Navigation, Battery, Clock, RefreshCw } from 'lucide-react';
+import RouteDemo from './RouteDemo';
 
 interface Station {
     id: string;
@@ -18,8 +19,15 @@ interface Station {
 export default function NearestStationsDemo() {
     const [isCalculating, setIsCalculating] = useState(true);
     const [currentLocation, setCurrentLocation] = useState({
-        lat: '10.8031',
-        lng: '106.7128'
+        lat: '10.7769',
+        lng: '106.7009'
+    });
+    const [routeDemo, setRouteDemo] = useState<{
+        isOpen: boolean;
+        station: Station | null;
+    }>({
+        isOpen: false,
+        station: null
     });
 
     // Map images array
@@ -99,10 +107,23 @@ export default function NearestStationsDemo() {
     const refreshStations = () => {
         setIsCalculating(true);
 
-        // Generate new random location
+        // Real Ho Chi Minh City locations for current position
+        const hcmcCurrentLocations = [
+            { lat: 10.7769, lng: 106.7009, name: "Quận 1 - Trung tâm" },
+            { lat: 10.7626, lng: 106.6602, name: "Quận 3 - Đại học KHTN" },
+            { lat: 10.8031, lng: 106.7128, name: "Quận 7 - Phú Mỹ Hưng" },
+            { lat: 10.8412, lng: 106.8099, name: "Quận 2 - Thủ Thiêm" },
+            { lat: 10.8231, lng: 106.6297, name: "Quận 10 - Công viên Lê Thị Riêng" },
+            { lat: 10.7605, lng: 106.6602, name: "Quận 3 - Công viên Lê Văn Tám" },
+            { lat: 10.8031, lng: 106.7128, name: "Quận 7 - SC VivoCity" },
+            { lat: 10.8412, lng: 106.8099, name: "Quận 2 - Vincom Mega Mall" }
+        ];
+
+        // Pick a random HCMC location
+        const randomLocation = hcmcCurrentLocations[Math.floor(Math.random() * hcmcCurrentLocations.length)];
         setCurrentLocation({
-            lat: (10.7 + Math.random() * 0.3).toFixed(4),
-            lng: (106.6 + Math.random() * 0.3).toFixed(4)
+            lat: randomLocation.lat.toFixed(4),
+            lng: randomLocation.lng.toFixed(4)
         });
 
         setStations(generateRandomStations());
@@ -147,6 +168,20 @@ export default function NearestStationsDemo() {
         if (count >= 10) return 'bg-green-500';
         if (count >= 5) return 'bg-yellow-500';
         return 'bg-red-500';
+    };
+
+    const openRouteDemo = (station: Station) => {
+        setRouteDemo({
+            isOpen: true,
+            station: station
+        });
+    };
+
+    const closeRouteDemo = () => {
+        setRouteDemo({
+            isOpen: false,
+            station: null
+        });
     };
 
     return (
@@ -285,7 +320,10 @@ export default function NearestStationsDemo() {
                                     {/* Right side - Directions Button */}
                                     <div className="flex-shrink-0 ml-4">
                                         {station.status === 'open' ? (
-                                            <button className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center space-x-2 cursor-pointer">
+                                            <button 
+                                                onClick={() => openRouteDemo(station)}
+                                                className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center space-x-2 cursor-pointer"
+                                            >
                                                 <Navigation className="w-4 h-4" />
                                                 <span>Chỉ Đường</span>
                                             </button>
@@ -310,23 +348,38 @@ export default function NearestStationsDemo() {
                     </div>
                 )}
 
-                {/* Footer Info */}
-                <div className="mt-8 bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6">
-                    <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">
-                        Thông tin bổ sung
-                    </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-blue-800 dark:text-blue-200">
-                        <div>
-                            <strong>Tổng số trạm:</strong> {stations.length} trạm
-                        </div>
-                        <div>
-                            <strong>Trạm mở cửa:</strong> {stations.filter(s => s.status === 'open').length} trạm
-                        </div>
-                        <div>
-                            <strong>Tổng pin có sẵn:</strong> {stations.reduce((sum, s) => sum + s.batteriesAvailable, 0)} pin
+                {/* Footer Info - Only show when not calculating */}
+                {!isCalculating && (
+                    <div className="mt-8 bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6">
+                        <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">
+                            Thông tin bổ sung
+                        </h3>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-blue-800 dark:text-blue-200">
+                            <div>
+                                <strong>Tổng số trạm:</strong> {stations.length} trạm
+                            </div>
+                            <div>
+                                <strong>Trạm mở cửa:</strong> {stations.filter(s => s.status === 'open').length} trạm
+                            </div>
+                            <div>
+                                <strong>Tổng pin có sẵn:</strong> {stations.reduce((sum, s) => sum + s.batteriesAvailable, 0)} pin
+                            </div>
                         </div>
                     </div>
-                </div>
+                )}
+
+                {/* Route Demo Modal */}
+                {routeDemo.station && (
+                    <RouteDemo
+                        isOpen={routeDemo.isOpen}
+                        onClose={closeRouteDemo}
+                        startLocation={{
+                            lat: parseFloat(currentLocation.lat),
+                            lng: parseFloat(currentLocation.lng)
+                        }}
+                        station={routeDemo.station}
+                    />
+                )}
             </div>
         </div>
     );
