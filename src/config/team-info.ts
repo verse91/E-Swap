@@ -13,19 +13,25 @@ export interface TeamMember {
 
 export const TEAM_MEMBERS: TeamMember[] = [
   {
-    name: "Dương Thế Tài",
-    role: "Team Leader & Product Manager",
-    school: "UIT - ĐHQG TP.HCM",
-    bio: "Chịu trách nhiệm điều phối dự án và phát triển chiến lược sản phẩm"
+    name: "Lê Chí Vĩ",
+    role: "Team Leader & Project Manager",
+    school: "Đại học Văn Hiến",
+    bio: "Chịu trách nhiệm điều phối dự án và quản lý toàn bộ quy trình phát triển"
   },
   {
-    name: "Phùng Minh Khoa",
+    name: "Dương Thế Tài",
+    role: "Business Analyst & Strategy",
+    school: "Đại học Kinh tế TP.HCM",
+    bio: "Phân tích thị trường và phát triển chiến lược kinh doanh"
+  },
+  {
+    name: "Nguyễn Trọng Hoàng",
     role: "Backend Developer & System Architect",
     school: "UIT - ĐHQG TP.HCM",
     bio: "Phát triển hệ thống backend và thiết kế kiến trúc hệ thống"
   },
   {
-    name: "Lê Chí Vĩ",
+    name: "Phùng Minh Khoa",
     role: "Hardware Engineer & IoT Specialist",
     school: "BKU - ĐHQG TP.HCM",
     bio: "Thiết kế phần cứng trạm đổi pin và tích hợp IoT"
@@ -33,14 +39,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
   {
     name: "Nguyễn Tấn Thành",
     role: "Frontend Developer & UI/UX Designer",
-    school: "UIT - ĐHQG TP.HCM",
+    school: "Đại học Văn Hiến",
     bio: "Phát triển giao diện người dùng và thiết kế trải nghiệm"
-  },
-  {
-    name: "Nguyễn Trọng Hoàng",
-    role: "Mobile Developer & DevOps",
-    school: "UEH - ĐHQG TP.HCM",
-    bio: "Phát triển ứng dụng mobile và quản lý hệ thống triển khai"
   }
 ];
 
