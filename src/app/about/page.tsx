@@ -183,9 +183,9 @@ export default function AboutPage() {
             </div>
 
             {/* Team Members Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 justify-items-center">
+            <div className="flex flex-wrap justify-center gap-8 mb-12">
               {TEAM_MEMBERS.map((member, idx) => (
-                <div key={idx} className="relative group w-full max-w-sm">
+                <div key={idx} className="relative group w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-sm">
                   <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-green-500/10 rounded-3xl blur-xl group-hover:blur-2xl transition-all"></div>
                   <div className="relative bg-white/80 dark:bg-background/80 backdrop-blur-xl rounded-3xl p-6 border border-emerald-200/50 dark:border-emerald-800/30 shadow-xl h-full hover:scale-105 transition-transform">
                     <div className="w-20 h-20 rounded-full bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center mx-auto mb-4 shadow-lg text-white text-2xl font-bold">
