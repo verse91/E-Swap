@@ -107,36 +107,36 @@ export const COMPANY_INFO = {
  */
 export const TESTIMONIALS = [
   {
-    name: "Anh Minh Tuấn",
-    role: "Tài xế xe ôm công nghệ",
+    name: "Minh Anh",
+    role: "Học sinh lớp 12",
     avatar: "/testimonials/user1.jpg",
     rating: 5,
-    content: "Tôi chạy xe ôm công nghệ, việc đổi pin chỉ mất 2 phút giúp tôi tiết kiệm được rất nhiều thời gian. Không còn phải lo hết pin giữa đường nữa!",
-    location: "TP. Hồ Chí Minh"
+    content: "Mình đi học xa nên hay lo hết pin giữa đường lắm. Từ khi biết E-Swap thì yên tâm hơn hẳn, đổi pin nhanh mà không tốn thời gian. Giờ đi đâu cũng không sợ hết pin nữa!",
+    location: "Quận Thủ Đức"
   },
   {
-    name: "Chị Lan Anh",
-    role: "Nhân viên văn phòng",
+    name: "Thu Trang",
+    role: "Sinh viên năm 2",
     avatar: "/testimonials/user2.jpg",
     rating: 5,
-    content: "Ứng dụng E-Swap rất dễ sử dụng, tìm trạm gần nhất và thanh toán nhanh chóng. Quan trọng là giá cả hợp lý và thân thiện với môi trường.",
-    location: "Quận Bình Thạnh"
+    content: "App dễ xài lắm, tìm trạm gần đâu cũng có. Mà giá cũng hợp lý với túi tiền sinh viên, quan trọng là mình thấy mình đang làm điều tốt cho môi trường nữa.",
+    location: "Khu đô thị Phú Mỹ Hưng"
   },
   {
-    name: "Anh Hoàng Long",
-    role: "Chủ cửa hàng tiện lợi",
+    name: "Hoàng Long",
+    role: "Học sinh lớp 11",
     avatar: "/testimonials/user3.jpg",
     rating: 5,
-    content: "Sau khi lắp trạm E-Swap tại cửa hàng, lượng khách đến nhiều hơn rất nhiều. Đây là mô hình win-win cho cả hai bên.",
+    content: "Hồi trước mình phải chờ mấy tiếng để sạc pin, giờ chỉ 2 phút là xong. Bố mẹ cũng yên tâm hơn vì biết mình không bị hết pin giữa đường.",
     location: "Quận 7"
   },
   {
-    name: "Chị Hương Giang",
-    role: "Sinh viên",
+    name: "Phương Anh",
+    role: "Sinh viên năm 3",
     avatar: "/testimonials/user4.jpg",
     rating: 5,
-    content: "Em rất thích concept xanh của E-Swap. Mỗi lần đổi pin là em cảm thấy mình đang góp phần bảo vệ môi trường.",
-    location: "Khu đô thị Phú Mỹ Hưng"
+    content: "Trước giờ nghĩ xe điện chỉ dành cho người có tiền, nhưng E-Swap làm mình thấy ai cũng có thể dùng được. Và quan trọng là nó thực sự xanh luôn chứ không phải fake.",
+    location: "Quận Bình Thạnh"
   }
 ];
 
