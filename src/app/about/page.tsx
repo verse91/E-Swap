@@ -1,15 +1,14 @@
 "use client";
 
-import Footer from "@/components/footer";
+import { Building2, Target, Heart, Award, Users, Lightbulb, Factory, Database, Zap, Battery } from "lucide-react";
+import { TEAM_MEMBERS, COMPANY_INFO } from "@/config/team-info";
 import { NavbarMain } from "@/components/navbar/navbar";
-import { Building2, Target, Heart, Award, Users, Lightbulb, Factory, Database } from "lucide-react";
-import Link from "next/link";
+import Footer from "@/components/footer";
 
 export default function AboutPage() {
     return (
         <div className="min-h-screen bg-background">
             <NavbarMain />
-            {/* Hero Section */}
             <section className="relative bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 dark:from-emerald-950 dark:via-green-950 dark:to-teal-950 py-20 overflow-hidden">
                 <div className="absolute inset-0 opacity-30">
                     <div className="absolute top-20 left-20 w-72 h-72 bg-emerald-400/20 rounded-full blur-3xl animate-blob"></div>
@@ -19,31 +18,40 @@ export default function AboutPage() {
 
                 <div className="container mx-auto px-4 relative z-10">
                     <div className="max-w-4xl mx-auto text-center">
-                        <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-emerald-700 via-green-600 to-teal-600 dark:from-emerald-300 dark:via-green-300 dark:to-teal-300 bg-clip-text text-transparent pt-2">
-                            Công ty Cổ phần<br />Phương tiện điện thông minh E-SWAP
+                        <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-emerald-700 via-green-600 to-teal-600 dark:from-emerald-300 dark:via-green-300 dark:to-teal-300 bg-clip-text text-transparent mt-16">
+                            {COMPANY_INFO.fullName}
                         </h1>
                         <p className="text-lg md:text-xl text-emerald-700/80 dark:text-emerald-300/80 leading-relaxed">
-                            Thúc đẩy sự phát triển bền vững của Việt Nam và thế giới thông qua phương tiện điện thông minh
+                            {COMPANY_INFO.description}
+                        </p>
+                        <p className="text-xl md:text-2xl font-semibold text-emerald-600 dark:text-emerald-400 mt-4">
+                            "{COMPANY_INFO.slogan}"
                         </p>
                     </div>
                 </div>
             </section>
 
-            {/* Story Section */}
+            {/* Giới thiệu Section */}
             <section className="py-16 md:py-24">
                 <div className="container mx-auto px-4">
                     <div className="max-w-4xl mx-auto">
-                        <div className="prose prose-lg dark:prose-invert max-w-none">
-                            <p className="text-lg leading-relaxed text-muted-foreground">
-                                E-SWAP Motors được thành lập vào năm 2018 trong một căn phòng nhỏ 10m² với khát vọng thúc đẩy sự phát triển bền vững của Việt Nam và thế giới thông qua phương tiện điện thông minh, đưa năng lượng tái tạo vào giao thông. E-SWAP là viết tắt của <strong>Smart Electric Vehicles X</strong>, "X" vừa là một ẩn số, vừa có thể là một dòng phương tiện điện nào đó và cũng có nghĩa là X-factor (nhân tố X).
+                        <h1 className="text-3xl md:text-4xl font-bold mb-8">Khi cam kết Net Zero 2050 gặp thực tế đô thị</h1>
+
+                        <div className="prose prose-lg dark:prose-invert max-w-none space-y-6">
+                            <p className="text-lg leading-relaxed text-black/75">
+                                Việt Nam cam kết tương lai không phát thải vào năm 2050. Nhưng với hơn 77 triệu xe máy trên đường, câu hỏi không phải là "liệu chúng ta có thể?" mà là "làm thế nào để chuyển đổi không bỏ ai lại phía sau?". Giao thông xanh không thể chỉ là giấc mơ của những người có đủ thời gian chờ 8 tiếng để sạc pin, hay đủ tiền để chấp nhận bị ràng buộc bởi một hệ sinh thái đóng kín. Nó phải là giải pháp dành cho tất cả, từ người giao hàng chạy 100km mỗi ngày đến sinh viên lo lắng về quãng đường còn lại trên đồng hồ pin.
                             </p>
 
-                            <p className="text-lg leading-relaxed text-muted-foreground mt-6">
-                                Công ty được thành lập từ ý tưởng của <strong>Ts. Nguyễn Hữu Phước Nguyên</strong>, người luôn ấp ủ giấc mơ xây dựng một Hyundai cho Việt Nam, và 2 cộng sự khác là <strong>Ts. Nguyễn Trọng Hải</strong> – một bạn học cũ của anh Nguyên khi cả hai cùng lấy bằng Tiến sĩ ngành Cơ khí ở Đại học Michigan – Ann Arbor (Mỹ) và anh <strong>Nguyễn Đình Quảng</strong> – một chuyên gia về hệ thống IoT.
+                            <h1 className="text-3xl md:text-4xl font-bold mt-12 mb-8">Xanh thực sự, hay chỉ chuyển ô nhiễm sang nơi khác?</h1>
+
+                            <p className="text-lg leading-relaxed text-black/75">
+                                68% người dùng xe điện đang sống với nỗi lo hết pin (range anxiety). 75% người đi xe xăng từ chối chuyển đổi vì thời gian sạc quá lâu. Nhưng đây chưa phải vấn đề lớn nhất. Sự thật đằng sau "làn sóng xanh" là phần lớn xe điện vẫn sạc bằng điện từ than đá. Chúng ta chỉ đang di chuyển khói độc từ ống xả xe máy sang ống khói nhà máy điện. Đây không phải là tương lai mà thế hệ tiếp theo xứng đáng có được.
                             </p>
 
-                            <p className="text-lg leading-relaxed text-muted-foreground mt-6">
-                                Ngay từ những ngày đầu, công ty đã tập trung vào xây dựng một hệ sinh thái toàn diện cho xe máy điện thông minh để thúc đẩy sự phát triển của loại phương tiện này ở Việt Nam và Đông Nam Á. Thông qua hệ sinh thái, công ty muốn giải quyết triệt để các vấn đề của xe điện hiện nay. Đó là sự bất tiện trong nạp năng lượng và chi phí cao. Đồng thời, mang lại cho người dùng những trải nghiệm và giá trị mới mẻ thông qua việc khai thác dữ liệu từ hệ sinh thái và ứng dụng các công nghệ mới nhất như IoT, AI, dữ liệu lớn.
+                            <h1 className="text-3xl md:text-4xl font-bold mt-12 mb-8">E-Swap: Khi năng lượng mặt trời gặp công nghệ đổi pin</h1>
+
+                            <p className="text-lg leading-relaxed text-black/75">
+                                Giải pháp này không chỉ dành cho những người tiên phong, mà cho tất cả những ai đang di chuyển mỗi ngày. E-Swap là trạm đổi pin đầu tiên vận hành 100% bằng năng lượng mặt trời. Không phát thải từ đầu đến cuối, thực sự xanh từ "giếng dầu tới bánh xe". Đổi pin dưới 2 phút, không chờ đợi. Nền tảng mở cho mọi hãng xe, không vendor lock-in. Đây là cách chúng ta giữ lời hứa Net Zero 2050, một lần đổi pin một.
                             </p>
                         </div>
                     </div>
@@ -66,7 +74,7 @@ export default function AboutPage() {
                                         <h2 className="text-2xl font-bold">Tầm nhìn</h2>
                                     </div>
                                     <p className="text-lg text-muted-foreground leading-relaxed">
-                                        Trở thành một công ty hàng đầu về công nghệ tương lai, thúc đẩy Việt Nam và thế giới hướng tới phát triển bền vững.
+                                        {COMPANY_INFO.vision}
                                     </p>
                                 </div>
                             </div>
@@ -82,7 +90,7 @@ export default function AboutPage() {
                                         <h2 className="text-2xl font-bold">Sứ mệnh</h2>
                                     </div>
                                     <p className="text-lg text-muted-foreground leading-relaxed">
-                                        Thúc đẩy phát triển bền vững thông qua phương tiện điện thông minh và năng lượng tái tạo, bền vững trong chất lượng và bền vững trong giá trị.
+                                        {COMPANY_INFO.mission}
                                     </p>
                                 </div>
                             </div>
@@ -100,43 +108,29 @@ export default function AboutPage() {
                         </h2>
 
                         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                            {[
-                                {
-                                    icon: Building2,
-                                    title: "Bền vững",
-                                    description: "E-SWAP Motors hướng tới sự bền vững về môi trường, bền vững về chất lượng và bền vững trong giá trị mà công ty mang lại cho cộng đồng.",
-                                    color: "from-emerald-500 to-green-600"
-                                },
-                                {
-                                    icon: Lightbulb,
-                                    title: "Khả năng",
-                                    description: "E-SWAP Motors luôn thách thức giới hạn để mang lại khả năng mới, góp phần tích cực vào sự phát triển lâu dài của xã hội.",
-                                    color: "from-green-500 to-teal-600"
-                                },
-                                {
-                                    icon: Award,
-                                    title: "Dịch vụ",
-                                    description: "E-SWAP Motors cung cấp những dịch vụ về giao thông thông minh, thân thiện môi trường, đem lại trải nghiệm tốt nhất cho khách hàng.",
-                                    color: "from-teal-500 to-cyan-600"
-                                },
-                                {
-                                    icon: Heart,
-                                    title: "Hân hoan",
-                                    description: "E-SWAP Motors mang đến niềm hân hoan, hạnh phúc cho khách hàng của mình thông qua chất lượng của sản phẩm và dịch vụ.",
-                                    color: "from-cyan-500 to-blue-600"
-                                }
-                            ].map((value, idx) => (
-                                <div key={idx} className="relative group">
-                                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-green-500/5 rounded-2xl blur-lg group-hover:blur-xl transition-all"></div>
-                                    <div className="relative bg-white dark:bg-background rounded-2xl p-6 border border-emerald-200/30 dark:border-emerald-800/30 hover:border-emerald-300 dark:hover:border-emerald-700 transition-all">
-                                        <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${value.color} flex items-center justify-center mb-4 shadow-lg`}>
-                                            <value.icon className="w-6 h-6 text-white" />
+                            {COMPANY_INFO.coreValues.map((value, idx) => {
+                                const icons = [Building2, Zap, Award, Heart];
+                                const colors = [
+                                    "from-emerald-500 to-green-600",
+                                    "from-green-500 to-teal-600",
+                                    "from-teal-500 to-cyan-600",
+                                    "from-cyan-500 to-blue-600"
+                                ];
+                                const Icon = icons[idx];
+
+                                return (
+                                    <div key={idx} className="relative group">
+                                        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-green-500/5 rounded-2xl blur-lg group-hover:blur-xl transition-all"></div>
+                                        <div className="relative bg-white dark:bg-background rounded-2xl p-6 border border-emerald-200/30 dark:border-emerald-800/30 hover:border-emerald-300 dark:hover:border-emerald-700 transition-all">
+                                            <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${colors[idx]} flex items-center justify-center mb-4 shadow-lg`}>
+                                                <Icon className="w-6 h-6 text-white" />
+                                            </div>
+                                            <h3 className="text-xl font-bold mb-3">{value.title}</h3>
+                                            <p className="text-sm text-muted-foreground leading-relaxed">{value.description}</p>
                                         </div>
-                                        <h3 className="text-xl font-bold mb-3">{value.title}</h3>
-                                        <p className="text-sm text-muted-foreground leading-relaxed">{value.description}</p>
                                     </div>
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
                 </div>
@@ -147,38 +141,27 @@ export default function AboutPage() {
                 <div className="container mx-auto px-4">
                     <div className="max-w-6xl mx-auto">
                         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-emerald-700 to-green-700 dark:from-emerald-300 dark:to-green-300 bg-clip-text text-transparent">
-                            Năng lực cốt lõi
+                            Tính năng nổi bật
                         </h2>
 
-                        <div className="grid md:grid-cols-3 gap-8">
-                            {[
-                                {
-                                    icon: Lightbulb,
-                                    title: "Nghiên cứu & Phát triển",
-                                    description: "Sở hữu đội ngũ nhân lực công nghệ cao, E-SWAP làm chủ toàn bộ quá trình nghiên cứu, phát triển sản phẩm cũng như các công nghệ lõi của hệ sinh thái. Công ty có 10 bằng sáng chế, 5 thiết kế kiểu dáng công nghiệp và 4 nhãn hiệu được đăng ký bảo hộ."
-                                },
-                                {
-                                    icon: Factory,
-                                    title: "Sản xuất hàng loạt",
-                                    description: "Với nhà máy riêng, E-SWAP làm chủ sản xuất hàng loạt xe máy điện, pin, trạm đổi pin, và các thành phần quan trọng trên xe như điều khiển động cơ, bộ quản lý năng lượng, màn hình."
-                                },
-                                {
-                                    icon: Database,
-                                    title: "Dịch vụ giao thông thông minh",
-                                    description: "Với việc phát triển một hệ sinh thái xe máy điện toàn diện, E-SWAP hướng tới cung cấp những dịch vụ mới mẻ với nhiều giá trị cho người dùng dựa trên dữ liệu và phần mềm."
-                                }
-                            ].map((competency, idx) => (
-                                <div key={idx} className="relative group">
-                                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-green-500/10 rounded-3xl blur-xl group-hover:blur-2xl transition-all"></div>
-                                    <div className="relative bg-white/80 dark:bg-background/80 backdrop-blur-xl rounded-3xl p-8 border border-emerald-200/50 dark:border-emerald-800/30 shadow-xl h-full">
-                                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center mb-6 shadow-lg">
-                                            <competency.icon className="w-7 h-7 text-white" />
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {COMPANY_INFO.features.map((feature, idx) => {
+                                const icons = [Zap, Battery, Lightbulb, Database, Factory, Award];
+                                const Icon = icons[idx];
+
+                                return (
+                                    <div key={idx} className="relative group">
+                                        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-green-500/10 rounded-3xl blur-xl group-hover:blur-2xl transition-all"></div>
+                                        <div className="relative bg-white/80 dark:bg-background/80 backdrop-blur-xl rounded-3xl p-8 border border-emerald-200/50 dark:border-emerald-800/30 shadow-xl h-full">
+                                            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center mb-6 shadow-lg">
+                                                <Icon className="w-7 h-7 text-white" />
+                                            </div>
+                                            <h3 className="text-xl font-bold mb-4">{feature.title}</h3>
+                                            <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
                                         </div>
-                                        <h3 className="text-xl font-bold mb-4">{competency.title}</h3>
-                                        <p className="text-muted-foreground leading-relaxed">{competency.description}</p>
                                     </div>
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
                 </div>
@@ -187,20 +170,33 @@ export default function AboutPage() {
             {/* Team Section */}
             <section className="py-16 md:py-24">
                 <div className="container mx-auto px-4">
-                    <div className="max-w-4xl mx-auto text-center">
-                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center mx-auto mb-6 shadow-xl">
-                            <Users className="w-8 h-8 text-white" />
+                    <div className="max-w-6xl mx-auto">
+                        <div className="text-center mb-12">
+                            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center mx-auto mb-6 shadow-xl">
+                                <Users className="w-8 h-8 text-white" />
+                            </div>
+                            <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-emerald-700 to-green-700 dark:from-emerald-300 dark:to-green-300 bg-clip-text text-transparent">
+                                Đội ngũ nhân sự
+                            </h2>
+                            <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-12">
+                                Chúng tôi là một tập thể trẻ, năng động và đam mê công nghệ xanh. Mỗi thành viên đều mang trong mình khát vọng đóng góp vào sự phát triển bền vững của Việt Nam.
+                            </p>
                         </div>
-                        <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-emerald-700 to-green-700 dark:from-emerald-300 dark:to-green-300 bg-clip-text text-transparent">
-                            Đội ngũ nhân sự
-                        </h2>
-                        <div className="prose prose-lg dark:prose-invert max-w-none">
-                            <p className="text-lg leading-relaxed text-muted-foreground mb-6">
-                                Đội ngũ nhân sự của E-SWAP Motors là một tập thể có trình độ cao, có kinh nghiệm học tập và làm việc từ nhiều nước trên thế giới như <strong>Mỹ, Israel, Nhật Bản, Hàn Quốc, Hà Lan, Đài Loan</strong>,… và nhiều tập đoàn lớn như <strong>Honda, Ford, GM, PROTON, SYM, Yamaha, Viettel</strong>,…
-                            </p>
-                            <p className="text-lg leading-relaxed text-muted-foreground mb-8">
-                                Chúng tôi cùng nhau chia sẻ khát vọng xây dựng một công ty công nghệ sâu, phát triển bền vững, lâu dài, có khả năng cạnh tranh với thế giới. Chúng tôi sẵn sàng từ bỏ những lợi ích ngắn hạn và thoát khỏi vùng an toàn, dấn thân đón nhận thách thức để kiến tạo những giá trị lớn lao cho cộng đồng và đất nước.
-                            </p>
+
+                        {/* Team Members Grid */}
+                        <div className="flex flex-wrap justify-center gap-8 mb-12">
+                            {TEAM_MEMBERS.map((member, idx) => (
+                                <div key={idx} className="relative group w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-sm">
+                                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-green-500/10 rounded-3xl blur-xl group-hover:blur-2xl transition-all"></div>
+                                    <div className="relative bg-white/80 dark:bg-background/80 backdrop-blur-xl rounded-3xl p-6 border border-emerald-200/50 dark:border-emerald-800/30 shadow-xl h-full hover:scale-105 transition-transform">
+                                        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center mx-auto mb-4 shadow-lg text-white text-2xl font-bold">
+                                            {member.name.split(' ').pop()?.charAt(0)}
+                                        </div>
+                                        <h3 className="text-xl font-bold text-center mb-2">{member.name}</h3>
+                                        <p className="text-sm text-muted-foreground text-center">{member.school}</p>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
 
                     </div>
