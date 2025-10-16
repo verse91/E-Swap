@@ -186,26 +186,26 @@ export default function NearestStationsDemo() {
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-green-50 via-white to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-            <div className="container mx-auto px-4 py-8">
+            <div className="container mx-auto px-4 md:px-6 py-6 md:py-8">
                 {/* Header */}
-                <div className="text-center mb-8">
-                    <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+                <div className="text-center mb-6 md:mb-8">
+                    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-3 md:mb-4">
                         Tìm trạm E-Swap gần nhất
                     </h1>
-                    <p className="text-xl text-gray-600 dark:text-gray-300">
+                    <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 px-2">
                         Demo tính năng tìm kiếm trạm sạc pin điện tử
                     </p>
                 </div>
 
                 {/* Location Notification */}
-                <div className="bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-6 rounded-r-lg">
-                    <div className="flex items-center">
-                        <MapPin className="w-5 h-5 text-yellow-600 mr-2" />
-                        <div>
-                            <p className="text-sm font-medium text-yellow-800">
+                <div className="bg-yellow-100 border-l-4 border-yellow-500 p-3 md:p-4 mb-4 md:mb-6 rounded-r-lg">
+                    <div className="flex items-start md:items-center">
+                        <MapPin className="w-4 h-4 md:w-5 md:h-5 text-yellow-600 mr-2 mt-0.5 md:mt-0 flex-shrink-0" />
+                        <div className="min-w-0">
+                            <p className="text-xs sm:text-sm font-medium text-yellow-800 break-all">
                                 Vị trí hiện tại: {currentLocation.lat}, {currentLocation.lng}
                             </p>
-                            <p className="text-sm text-yellow-700">
+                            <p className="text-xs sm:text-sm text-yellow-700">
                                 {isCalculating ? 'Đang tính toán...' : 'Hoàn thành tính toán khoảng cách'}
                             </p>
                         </div>
@@ -213,17 +213,18 @@ export default function NearestStationsDemo() {
                 </div>
 
                 {/* Title and Refresh Button */}
-                <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
-                        Trạm gần nhất (Sắp xếp theo khoảng cách)
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-4 md:mb-6">
+                    <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">
+                        Trạm gần nhất
                     </h2>
                     <button
                         onClick={refreshStations}
                         disabled={isCalculating}
-                        className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white rounded-lg font-medium transition-colors duration-200"
+                        className="flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white rounded-lg font-medium transition-colors duration-200 text-sm sm:text-base"
                     >
                         <RefreshCw className={`w-4 h-4 ${isCalculating ? 'animate-spin' : ''}`} />
-                        {isCalculating ? 'Đang tải...' : 'Làm mới'}
+                        <span className="hidden sm:inline">{isCalculating ? 'Đang tải...' : 'Làm mới'}</span>
+                        <span className="sm:hidden">{isCalculating ? 'Đang tải...' : 'Làm mới'}</span>
                     </button>
                 </div>
 
@@ -239,22 +240,22 @@ export default function NearestStationsDemo() {
 
                 {/* Stations List */}
                 {!isCalculating && (
-                    <div className="space-y-4">
+                    <div className="space-y-3 md:space-y-4">
                         {stations.map((station, index) => (
                             <div
                                 key={station.id}
-                                className={`bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 border ${station.status === 'open'
+                                className={`bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 md:p-6 hover:shadow-xl transition-all duration-300 border ${station.status === 'open'
                                     ? 'border-green-200 dark:border-gray-700'
                                     : station.status === 'closed'
                                         ? 'border-red-200 dark:border-red-800 bg-red-100 dark:bg-red-900/10'
                                         : 'border-yellow-200 dark:border-yellow-800 dark:bg-yellow-900/10'
                                     }`}
                             >
-                                <div className="flex items-start justify-between">
+                                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
                                     {/* Left side - Map Image and Info */}
-                                    <div className="flex items-start space-x-4 flex-1">
+                                    <div className="flex items-start space-x-3 md:space-x-4 flex-1">
                                         {/* Map Image Badge */}
-                                        <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 shadow-lg">
+                                        <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden flex-shrink-0 shadow-lg">
                                             {/* Map Image Background */}
                                             <div
                                                 className="w-full h-full bg-cover bg-center bg-no-repeat"
@@ -266,37 +267,37 @@ export default function NearestStationsDemo() {
 
                                         {/* Station Info */}
                                         <div className="flex-1 min-w-0">
-                                            <div className="flex items-center space-x-2 mb-2">
-                                                <h3 className="text-lg font-bold text-gray-900 dark:text-white truncate">
+                                            <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-2 mb-2 gap-1 sm:gap-0">
+                                                <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white truncate">
                                                     {station.name}
                                                 </h3>
-                                                <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(station.status)}`}>
+                                                <span className={`px-2 py-1 rounded-full text-xs font-medium w-fit ${getStatusColor(station.status)}`}>
                                                     {getStatusText(station.status)}
                                                 </span>
                                             </div>
 
-                                            <div className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
-                                                <div className="flex items-center space-x-2">
-                                                    <MapPin className="w-4 h-4 text-gray-400" />
-                                                    <span>{station.address}</span>
+                                            <div className="space-y-2 text-xs sm:text-sm text-gray-600 dark:text-gray-300">
+                                                <div className="flex items-start space-x-2">
+                                                    <MapPin className="w-3 h-3 sm:w-4 sm:h-4 text-gray-400 mt-0.5 flex-shrink-0" />
+                                                    <span className="break-words">{station.address}</span>
                                                 </div>
 
-                                                <div className="flex items-center space-x-4">
+                                                <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-1 sm:space-y-0">
                                                     <div className="flex items-center space-x-1">
-                                                        <Navigation className="w-4 h-4 text-blue-500" />
+                                                        <Navigation className="w-3 h-3 sm:w-4 sm:h-4 text-blue-500" />
                                                         <span className="font-medium">{station.distance} km</span>
                                                     </div>
 
                                                     <div className="flex items-center space-x-1">
-                                                        <Clock className="w-4 h-4 text-gray-400" />
+                                                        <Clock className="w-3 h-3 sm:w-4 sm:h-4 text-gray-400" />
                                                         <span>{station.operatingHours}</span>
                                                     </div>
                                                 </div>
 
                                                 {/* Battery Availability */}
                                                 <div className="flex items-center space-x-2">
-                                                    <Battery className="w-4 h-4 text-gray-400" />
-                                                    <span className="text-sm">Còn</span>
+                                                    <Battery className="w-3 h-3 sm:w-4 sm:h-4 text-gray-400" />
+                                                    <span className="text-xs sm:text-sm">Còn</span>
                                                     <span className={`px-2 py-1 rounded-full text-xs font-bold text-white ${getBatteryColor(station.batteriesAvailable)}`}>
                                                         {station.batteriesAvailable} pin
                                                     </span>
@@ -307,7 +308,7 @@ export default function NearestStationsDemo() {
                                                     {station.services.map((service, idx) => (
                                                         <span
                                                             key={idx}
-                                                            className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded-full"
+                                                            className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded-full"
                                                         >
                                                             {service}
                                                         </span>
@@ -318,11 +319,11 @@ export default function NearestStationsDemo() {
                                     </div>
 
                                     {/* Right side - Directions Button */}
-                                    <div className="flex-shrink-0 ml-4">
+                                    <div className="flex-shrink-0 sm:ml-4 w-full sm:w-auto">
                                         {station.status === 'open' ? (
-                                            <button 
+                                            <button
                                                 onClick={() => openRouteDemo(station)}
-                                                className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center space-x-2 cursor-pointer"
+                                                className="w-full sm:w-auto bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center space-x-2 cursor-pointer text-sm"
                                             >
                                                 <Navigation className="w-4 h-4" />
                                                 <span>Chỉ Đường</span>
@@ -331,7 +332,7 @@ export default function NearestStationsDemo() {
                                             <div className="flex flex-col items-center space-y-1">
                                                 <button
                                                     disabled
-                                                    className="bg-gray-400 text-gray-200 px-4 py-2 rounded-lg font-medium cursor-not-allowed flex items-center space-x-2"
+                                                    className="w-full sm:w-auto bg-gray-400 text-gray-200 px-3 py-2 rounded-lg font-medium cursor-not-allowed flex items-center justify-center space-x-2 text-sm"
                                                 >
                                                     <Navigation className="w-4 h-4" />
                                                     <span>Chỉ Đường</span>
@@ -350,18 +351,18 @@ export default function NearestStationsDemo() {
 
                 {/* Footer Info - Only show when not calculating */}
                 {!isCalculating && (
-                    <div className="mt-8 bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6">
-                        <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">
+                    <div className="mt-6 md:mt-8 bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4 md:p-6">
+                        <h3 className="text-base md:text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">
                             Thông tin bổ sung
                         </h3>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-blue-800 dark:text-blue-200">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 text-xs sm:text-sm text-blue-800 dark:text-blue-200">
                             <div>
                                 <strong>Tổng số trạm:</strong> {stations.length} trạm
                             </div>
                             <div>
                                 <strong>Trạm mở cửa:</strong> {stations.filter(s => s.status === 'open').length} trạm
                             </div>
-                            <div>
+                            <div className="sm:col-span-2 md:col-span-1">
                                 <strong>Tổng pin có sẵn:</strong> {stations.reduce((sum, s) => sum + s.batteriesAvailable, 0)} pin
                             </div>
                         </div>
