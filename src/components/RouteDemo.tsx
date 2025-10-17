@@ -233,7 +233,7 @@ export default function RouteDemo({
                         .addTo(map)
                         .bindPopup(`
                             <div class="text-center">
-                                <strong>🚀 ĐIỂM BẮT ĐẦU</strong><br>
+                                <strong>ĐIỂM BẮT ĐẦU</strong><br>
                                 <small>Vị trí hiện tại của bạn</small><br>
                                 <small>${currentStartLocation.lat.toFixed(4)}, ${currentStartLocation.lng.toFixed(4)}</small>
                             </div>
@@ -243,8 +243,8 @@ export default function RouteDemo({
                         .addTo(map)
                         .bindPopup(`
                             <div class="text-center">
-                                <strong>🏁 ĐIỂM ĐÍCH</strong><br>
-                                <strong>🔋 ${currentStation.name}</strong><br>
+                                <strong>ĐIỂM ĐÍCH</strong><br>
+                                <strong>${currentStation.name}</strong><br>
                                 <small>${currentStation.address}</small><br>
                                 <small>Khoảng cách: ${currentStation.distance} km</small><br>
                                 <small>Pin có sẵn: ${currentStation.batteriesAvailable} pin</small><br>
