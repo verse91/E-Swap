@@ -1,13 +1,16 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Check, Zap, Battery, Car, Star } from 'lucide-react';
 import SignupForm from './SignupForm';
+import VietQRPayment from './VietQRPayment';
 
 export default function PricingSection() {
     const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
     const [activeTab, setActiveTab] = useState<'selfcharge' | 'battery' | 'bikerental'>('selfcharge');
     const [showSignupForm, setShowSignupForm] = useState(false);
+    const [showPaymentModal, setShowPaymentModal] = useState(false);
+    const [selectedPackageForPayment, setSelectedPackageForPayment] = useState<any>(null);
 
     const selfChargePackages = [
         {
@@ -220,6 +223,33 @@ export default function PricingSection() {
 
     const closeModal = () => setSelectedPackage(null);
 
+    const handleBuyPackage = (pkg: any) => {
+        setSelectedPackageForPayment(pkg);
+        setShowPaymentModal(true);
+    };
+
+    // Handle ESC key to close details modal
+    useEffect(() => {
+        const handleEscKey = (event: KeyboardEvent) => {
+            if (event.key === 'Escape' && selectedPackage) {
+                closeModal();
+            }
+        };
+
+        if (selectedPackage) {
+            document.addEventListener('keydown', handleEscKey);
+        }
+
+        return () => {
+            document.removeEventListener('keydown', handleEscKey);
+        };
+    }, [selectedPackage]);
+
+    const closePaymentModal = () => {
+        setShowPaymentModal(false);
+        setSelectedPackageForPayment(null);
+    };
+
     const tabInfo = getTabInfo();
     const currentPackages = getCurrentPackages();
 
@@ -338,6 +368,7 @@ export default function PricingSection() {
                                     Chi tiết
                                 </button>
                                 <button
+                                    onClick={() => handleBuyPackage(pkg)}
                                     className={`flex-1 py-2 px-3 rounded-lg font-semibold transition-all duration-300 bg-gradient-to-r ${pkg.color} text-white hover:shadow-lg cursor-pointer`}
                                 >
                                     Mua
@@ -351,7 +382,7 @@ export default function PricingSection() {
                 <div className="mt-12 text-center">
                     <button
                         onClick={() => setShowSignupForm(true)}
-                        className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                        className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 cursor-pointer"
                     >
                         Đăng ký ngay để được tư vấn miễn phí
                     </button>
@@ -419,9 +450,41 @@ export default function PricingSection() {
                                     </ul>
                                 </div>
                             </div>
+
+                            {/* Payment Button in Modal */}
+                            <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+                                <button
+                                    onClick={() => {
+                                        const pkg = currentPackages.find(p => p.id === selectedPackage);
+                                        if (pkg) {
+                                            handleBuyPackage(pkg);
+                                            closeModal();
+                                        }
+                                    }}
+                                    className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 bg-gradient-to-r ${currentPackages.find(p => p.id === selectedPackage)?.color} text-white hover:shadow-lg cursor-pointer`}
+                                >
+                                    Thanh toán ngay - {currentPackages.find(p => p.id === selectedPackage)?.price} VNĐ
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
+            )}
+
+            {/* VietQR Payment Modal */}
+            {showPaymentModal && selectedPackageForPayment && (
+                <VietQRPayment
+                    isOpen={showPaymentModal}
+                    onClose={closePaymentModal}
+                    packageInfo={{
+                        id: selectedPackageForPayment.id,
+                        name: selectedPackageForPayment.name,
+                        price: selectedPackageForPayment.price,
+                        period: selectedPackageForPayment.period,
+                        km: selectedPackageForPayment.km,
+                        pins: selectedPackageForPayment.pins
+                    }}
+                />
             )}
 
             {/* Signup Form */}
