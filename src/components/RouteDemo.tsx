@@ -207,12 +207,12 @@ export default function RouteDemo({
 
                 // Add markers with error handling
                 try {
-                    // Create custom icons for start and end markers
-                    const endIcon = L.divIcon({
-                        className: 'custom-marker end-marker',
+                    // Create custom circle icon for start marker
+                    const startIcon = L.divIcon({
+                        className: 'custom-marker start-marker',
                         html: `
                             <div style="
-                                background: #EF4444;
+                                background: #3B82F6;
                                 color: white;
                                 border: 3px solid white;
                                 border-radius: 50%;
@@ -229,7 +229,7 @@ export default function RouteDemo({
                         iconAnchor: [10, 10]
                     });
 
-                    const startMarker = L.marker([currentStartLocation.lat, currentStartLocation.lng])
+                    const startMarker = L.marker([currentStartLocation.lat, currentStartLocation.lng], { icon: startIcon })
                         .addTo(map)
                         .bindPopup(`
                             <div class="text-center">
@@ -239,12 +239,12 @@ export default function RouteDemo({
                             </div>
                         `);
 
-                    const endMarker = L.marker([currentEndLocation.lat, currentEndLocation.lng], { icon: endIcon })
+                    const endMarker = L.marker([currentEndLocation.lat, currentEndLocation.lng])
                         .addTo(map)
                         .bindPopup(`
                             <div class="text-center">
-                                <strong>ĐIỂM ĐÍCH</strong><br>
-                                <strong>${currentStation.name}</strong><br>
+                                <strong>🏁 ĐIỂM ĐÍCH</strong><br>
+                                <strong>🔋 ${currentStation.name}</strong><br>
                                 <small>${currentStation.address}</small><br>
                                 <small>Khoảng cách: ${currentStation.distance} km</small><br>
                                 <small>Pin có sẵn: ${currentStation.batteriesAvailable} pin</small><br>
@@ -415,14 +415,14 @@ export default function RouteDemo({
                         <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Chú thích</h3>
                         <div className="space-y-2">
                             <div className="flex items-center gap-2">
-                                <div className="w-6 h-6 bg-blue-500 rounded-t-full" style={{
-                                    clipPath: 'polygon(50% 100%, 0 0, 100% 0)',
-                                    transform: 'rotate(180deg)'
-                                }}></div>
+                                <div className="w-5 h-5 bg-blue-500 rounded-full"></div>
                                 <span className="text-xs text-gray-700 dark:text-gray-300">Điểm bắt đầu (Vị trí của bạn)</span>
                             </div>
                             <div className="flex items-center gap-2">
-                                <div className="w-5 h-5 bg-red-500 rounded-full"></div>
+                                <div className="w-6 h-6 bg-red-500 rounded-t-full" style={{
+                                    clipPath: 'polygon(50% 100%, 0 0, 100% 0)',
+                                    transform: 'rotate(180deg)'
+                                }}></div>
                                 <span className="text-xs text-gray-700 dark:text-gray-300">Điểm đích (Trạm E-Swap)</span>
                             </div>
                         </div>
