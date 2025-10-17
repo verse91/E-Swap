@@ -55,7 +55,7 @@ export default function RouteDemo({
         // Use station ID to get consistent location
         const stationIndex = (parseInt(station.id) - 1) % hcmcLocations.length;
         const location = hcmcLocations[stationIndex];
-        
+
         // Add small random offset to make it more realistic
         const latOffset = (Math.random() - 0.5) * 0.01; // ±0.005 degrees
         const lngOffset = (Math.random() - 0.5) * 0.01; // ±0.005 degrees
@@ -156,7 +156,7 @@ export default function RouteDemo({
                 console.log('Initializing map with coordinates:', currentStartLocation, currentEndLocation);
                 const map = L.map(mapRef.current).setView([currentStartLocation.lat, currentStartLocation.lng], 13);
                 mapInstanceRef.current = map;
-                
+
                 // Add map ready event
                 map.whenReady(() => {
                     console.log('Map is ready');
@@ -172,14 +172,14 @@ export default function RouteDemo({
                     crossOrigin: true,
                     subdomains: ['a', 'b', 'c']
                 });
-                
+
                 // Add fallback tile layer
                 const fallbackTileLayer = L.tileLayer("https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png", {
                     maxZoom: 19,
                     attribution: "© OpenStreetMap France",
                     crossOrigin: true
                 });
-                
+
                 // Try to add tiles
                 try {
                     tileLayer.addTo(map);
@@ -188,7 +188,7 @@ export default function RouteDemo({
                     console.log('Main tiles failed, using fallback:', error);
                     fallbackTileLayer.addTo(map);
                 }
-                
+
                 // If main tiles fail, try fallback
                 tileLayer.on('tileerror', (e: any) => {
                     console.log('Main tiles error:', e);
@@ -197,7 +197,7 @@ export default function RouteDemo({
                         fallbackTileLayer.addTo(map);
                     }
                 });
-                
+
                 // Force map to refresh after a short delay
                 setTimeout(() => {
                     if (map && map.invalidateSize) {
@@ -207,27 +207,51 @@ export default function RouteDemo({
 
                 // Add markers with error handling
                 try {
+                    // Create custom icons for start and end markers
+                    const endIcon = L.divIcon({
+                        className: 'custom-marker end-marker',
+                        html: `
+                            <div style="
+                                background: #EF4444;
+                                color: white;
+                                border: 3px solid white;
+                                border-radius: 50%;
+                                width: 20px;
+                                height: 20px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+                            ">
+                            </div>
+                        `,
+                        iconSize: [20, 20],
+                        iconAnchor: [10, 10]
+                    });
+
                     const startMarker = L.marker([currentStartLocation.lat, currentStartLocation.lng])
                         .addTo(map)
                         .bindPopup(`
                             <div class="text-center">
-                                <strong>📍 Vị trí hiện tại</strong><br>
+                                <strong>🚀 ĐIỂM BẮT ĐẦU</strong><br>
+                                <small>Vị trí hiện tại của bạn</small><br>
                                 <small>${currentStartLocation.lat.toFixed(4)}, ${currentStartLocation.lng.toFixed(4)}</small>
                             </div>
                         `);
 
-                    const endMarker = L.marker([currentEndLocation.lat, currentEndLocation.lng])
+                    const endMarker = L.marker([currentEndLocation.lat, currentEndLocation.lng], { icon: endIcon })
                         .addTo(map)
                         .bindPopup(`
                             <div class="text-center">
-                                <strong>🔋 ${currentStation.name}</strong><br>
+                                <strong>ĐIỂM ĐÍCH</strong><br>
+                                <strong>${currentStation.name}</strong><br>
                                 <small>${currentStation.address}</small><br>
                                 <small>Khoảng cách: ${currentStation.distance} km</small><br>
                                 <small>Pin có sẵn: ${currentStation.batteriesAvailable} pin</small><br>
                                 <small>${currentEndLocation.lat.toFixed(4)}, ${currentEndLocation.lng.toFixed(4)}</small>
                             </div>
                         `);
-                    
+
                     console.log('Markers added successfully');
                 } catch (markerError) {
                     console.error('Error adding markers:', markerError);
@@ -256,7 +280,7 @@ export default function RouteDemo({
                 }
 
                 const url = `https://router.project-osrm.org/route/v1/driving/${start.lng},${start.lat};${end.lng},${end.lat}?overview=full&geometries=geojson`;
-                
+
                 const response = await fetch(url);
                 const data = await response.json();
 
@@ -269,10 +293,10 @@ export default function RouteDemo({
                 if (data.routes && data.routes.length > 0) {
                     const route = data.routes[0];
                     const routeGeometry = route.geometry;
-                    
+
                     // Add route line
                     const L = (window as any).L;
-                    
+
                     // Additional safety checks
                     if (!L || !L.geoJSON || !map || !map.addLayer) {
                         console.error("Leaflet or map not properly initialized");
@@ -280,7 +304,7 @@ export default function RouteDemo({
                         setIsLoading(false);
                         return;
                     }
-                    
+
                     try {
                         const routeLine = L.geoJSON(routeGeometry, {
                             style: {
@@ -289,7 +313,7 @@ export default function RouteDemo({
                                 opacity: 0.8,
                             },
                         });
-                        
+
                         // Add to map with error handling - use addTo method
                         if (map && map.getPane && mapInstanceRef.current === map) {
                             routeLine.addTo(map);
@@ -386,6 +410,24 @@ export default function RouteDemo({
 
                 {/* Map Container */}
                 <div className="flex-1 relative">
+                    {/* Legend */}
+                    <div className="absolute top-4 left-4 z-20 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-3 border border-gray-200 dark:border-gray-700">
+                        <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Chú thích</h3>
+                        <div className="space-y-2">
+                            <div className="flex items-center gap-2">
+                                <div className="w-6 h-6 bg-blue-500 rounded-t-full" style={{
+                                    clipPath: 'polygon(50% 100%, 0 0, 100% 0)',
+                                    transform: 'rotate(180deg)'
+                                }}></div>
+                                <span className="text-xs text-gray-700 dark:text-gray-300">Điểm bắt đầu (Vị trí của bạn)</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <div className="w-5 h-5 bg-red-500 rounded-full"></div>
+                                <span className="text-xs text-gray-700 dark:text-gray-300">Điểm đích (Trạm E-Swap)</span>
+                            </div>
+                        </div>
+                    </div>
+
                     {isLoading && (
                         <div className="absolute inset-0 bg-gray-100 dark:bg-gray-800 flex items-center justify-center z-10">
                             <div className="text-center">
@@ -415,7 +457,7 @@ export default function RouteDemo({
                     <div
                         ref={mapRef}
                         className="w-full h-full"
-                        style={{ 
+                        style={{
                             minHeight: "400px",
                             height: "100%",
                             width: "100%",
